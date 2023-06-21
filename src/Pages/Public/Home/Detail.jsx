@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import icons from '../../../Utils/icons';
 import { apiProducts } from '../../../AxiosClient/apiProducts';
 import { Count } from '../../../Components';
@@ -81,4 +81,4 @@ const Detail = () => {
     );
 };
 
-export default Detail;
+export default memo(Detail);

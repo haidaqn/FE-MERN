@@ -6,9 +6,9 @@ const { AiOutlineMail, AiOutlineHeart, BsFillTelephoneFill, BsFillBagFill } = ic
 
 const Content = () => {
     return (
-        <div className="flex justify-between items-center w-full my-3">
+        <div className="flex justify-between items-center w-full my-4">
             <img src={logo} alt="logo" />
-            <div className="flex grid grid-cols-3 text-[13px]">
+            <div className="grid grid-cols-3 text-[13px]">
                 <div className="col-span-1">
                     <div className="font-bold flex items-center justify-start ">
                         <span className="mx-[19px]">

@@ -9,7 +9,6 @@ const { AiFillHome, BsFillTelephoneFill, AiOutlineMail, GrFacebookOption, GrInst
 const Footer = () => {
     return (
         <>
-            <Google />
             <div className="bg-[#191919] text-white w-full ">
                 <Layout>
                     <div className="flex">
@@ -86,7 +85,6 @@ const Footer = () => {
                         </div>
                     </div>
                 </Layout>
-                <br />
             </div>
         </>
     );

@@ -3,7 +3,7 @@ import { handlePrice } from '../../utils/fs';
 import { HoverProduct } from '../../components';
 import icons from '../../utils/icon';
 import { Link } from 'react-router-dom';
-import path from '../../utils/path';
+import path from '../../../Utils/path';
 const { AiFillHeart, BsFillEyeFill, BsCartCheckFill } = icons;
 // to={`/${path.DETAIL_PRODUCT}/${productData._id}/${productData.title}`}
 const HoverCategoryProduct = ({ description, title, price, id }) => {
