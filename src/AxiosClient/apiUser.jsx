@@ -31,18 +31,19 @@ export const apiAddToCart = (data, token) =>
     axios({
         url: '/user/cart',
         method: 'put',
-        data,
-        headers: {
-            'access-token': token
-        }
+        data
     });
 
 export const apiDeleteCart = (data, token) =>
     axios({
         url: '/user/delete',
         method: 'put',
-        data,
-        headers: {
-            'access-token': token
-        }
+        data
+    });
+
+export const apiGetCurrent = (data, token) =>
+    axios({
+        url: '/user/current',
+        method: 'get',
+        data
     });

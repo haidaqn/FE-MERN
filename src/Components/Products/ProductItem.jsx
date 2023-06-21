@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { handlePrice, renderStartNumber } from '../../Utils/commonF';
 import HoverIcon from '../Hover/HoverIcon';
 import icons from '../../Utils/icons';
 import TitleProduct from './Product/TitleProduct';

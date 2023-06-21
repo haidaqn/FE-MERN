@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Layout } from '../../../Components';
 import icons from '../../../Utils/icons';
 import Content from './Content';
 import Navbar from './Navbar';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../../Store/User/userSlice';
+
 const { GrFacebookOption, GrTwitter, GrInstagram, GrPinterest } = icons;
 
 const Header = () => {
+    const { isLogin, current } = useSelector((state) => state.user);
+    const [hover, setHover] = useState(false);
+    const dispatch = useDispatch();
+
     return (
         <>
             <div className="h-[38px] bg-main text-white text-[14px]">
@@ -14,11 +22,36 @@ const Header = () => {
                     <div className="flex h-full justify-between font-medium items-center pt-2">
                         <span>ORDER ONLINE OR CALL US (+1800) 000 8808</span>
                         <div className="flex justify-center items-center">
-                            <NavLink to="/login">
-                                <span className="pr-[10px] cursor-pointer transition-colors duration-300 hover:text-black">
-                                    Sign In or Create Account
-                                </span>
-                            </NavLink>
+                            {isLogin ? (
+                                <div
+                                    className="relative"
+                                    onMouseEnter={(e) => setHover(true)}
+                                    onMouseLeave={(e) => setHover(false)}
+                                >
+                                    <span className="pr-[10px] cursor-pointer transition-colors duration-300 hover:text-black">
+                                        Welcome, {current?.firstName} {current?.lastName}
+                                    </span>
+                                    {hover && (
+                                        <div className="absolute top-5 w-full bg-black flex flex-col z-50 text-white">
+                                            <span className="py-1 px-2 cursor-pointer border">Profile</span>
+                                            <span
+                                                className="py-1 px-2 cursor-pointer border"
+                                                onClick={() =>
+                                                    dispatch(logout({ isLogin: false, token: null, userData: null }))
+                                                }
+                                            >
+                                                Logout
+                                            </span>
+                                        </div>
+                                    )}
+                                </div>
+                            ) : (
+                                <NavLink to="/login">
+                                    <span className="pr-[10px] cursor-pointer transition-colors duration-300 hover:text-black">
+                                        Sign In or Create Account
+                                    </span>
+                                </NavLink>
+                            )}
                             <div className="flex justify-center items-center border-l-[1px] border-[#FBCBCB]">
                                 <span className="cursor-pointer px-[10px] border-r-[1px] border-[#FBCBCB] transition-colors duration-300 hover:text-black">
                                     <GrFacebookOption size={16} />

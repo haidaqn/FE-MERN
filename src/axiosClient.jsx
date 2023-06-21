@@ -9,7 +9,15 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
     (config) => {
-        return config;
+        let localStorage = window.localStorage.getItem('persist:shop/user');
+        if (localStorage && typeof localStorage === 'string') {
+            localStorage = JSON.parse(localStorage);
+            const accessToken = JSON.parse(localStorage?.token);
+            config.headers = {
+                Authorization: `Bearer ${accessToken}`
+            };
+            return config;
+        } else return config;
     },
     (error) => {
         return error?.data;

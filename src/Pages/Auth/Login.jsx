@@ -6,7 +6,7 @@ import { apiLogin } from '../../AxiosClient/apiUser';
 import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
-import { regiser } from '../../Store/User/userSlice';
+import { login } from '../../Store/User/userSlice';
 import { AiFillHome } from 'react-icons/ai';
 import path from '../../Utils/path';
 
@@ -27,7 +27,7 @@ const Login = () => {
         const response = await apiLogin(values);
         if (response?.success) {
             Swal.fire('', 'LOGIN Successfully', 'success');
-            dispatch(regiser({ isLogin: true, token: response.accessToken, userData: response.userData }));
+            dispatch(login({ isLogin: true, token: response.accessToken, userData: response.userData }));
             navigate('/');
         } else {
             Swal.fire('', 'LOGIN FAIL', 'error');
