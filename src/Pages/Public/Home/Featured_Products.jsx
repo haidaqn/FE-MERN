@@ -5,8 +5,6 @@ import { ProductItem } from '../../../Components';
 const Featured_Products = () => {
     const { newProducts } = useSelector((state) => state.products);
 
-    console.log(newProducts);
-
     return (
         <>
             <div className=" border-b-[3px] w-full border-main">
@@ -14,7 +12,7 @@ const Featured_Products = () => {
             </div>
             <div className="grid grid-cols-3 gap-5">
                 {newProducts?.map((product) => (
-                    <ProductItem product={product} uhv />
+                    <ProductItem key={product?.title} product={product} uhv />
                 ))}
             </div>
         </>

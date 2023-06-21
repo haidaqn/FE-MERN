@@ -1,13 +1,16 @@
 import React from 'react';
 import icons from '../../../Utils/icons';
 import logo from '../../../assets/logo.png';
+import { Link } from 'react-router-dom';
 
 const { AiOutlineMail, AiOutlineHeart, BsFillTelephoneFill, BsFillBagFill } = icons;
 
 const Content = () => {
     return (
         <div className="flex justify-between items-center w-full my-4">
-            <img src={logo} alt="logo" />
+            <Link to={'/'}>
+                <img src={logo} alt="logo" />
+            </Link>
             <div className="grid grid-cols-3 text-[13px]">
                 <div className="col-span-1">
                     <div className="font-bold flex items-center justify-start ">

@@ -3,7 +3,7 @@ import { Layout } from '../../../Components';
 import icons from '../../../Utils/icons';
 import Content from './Content';
 import Navbar from './Navbar';
-
+import { NavLink } from 'react-router-dom';
 const { GrFacebookOption, GrTwitter, GrInstagram, GrPinterest } = icons;
 
 const Header = () => {
@@ -14,9 +14,11 @@ const Header = () => {
                     <div className="flex h-full justify-between font-medium items-center pt-2">
                         <span>ORDER ONLINE OR CALL US (+1800) 000 8808</span>
                         <div className="flex justify-center items-center">
-                            <span className="pr-[10px] cursor-pointer transition-colors duration-300 hover:text-black">
-                                Sign In or Create Account
-                            </span>
+                            <NavLink to="/login">
+                                <span className="pr-[10px] cursor-pointer transition-colors duration-300 hover:text-black">
+                                    Sign In or Create Account
+                                </span>
+                            </NavLink>
                             <div className="flex justify-center items-center border-l-[1px] border-[#FBCBCB]">
                                 <span className="cursor-pointer px-[10px] border-r-[1px] border-[#FBCBCB] transition-colors duration-300 hover:text-black">
                                     <GrFacebookOption size={16} />
