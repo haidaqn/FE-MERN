@@ -1,6 +1,5 @@
 import React from 'react';
 import icons from '../../../Utils/icons';
-import Google from './Google';
 import { Layout } from '../../../Components';
 //
 

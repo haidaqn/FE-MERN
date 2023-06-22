@@ -3,6 +3,8 @@ export { default as FAQ } from './Public/FAQ/index';
 export { default as Blog } from './Public/Blogs/index';
 export { default as Out_Service } from './Public/Out_Service/index';
 export { default as Products } from './Public/Products/index';
+export { default as Category } from './Public/Products/Categories/index';
+export { default as Product_Detail } from './Public/Products/Product_Detail/index'; // memo
 
 // auth
 

@@ -7,6 +7,7 @@ import path from '../../Utils/path';
 import Swal from 'sweetalert2';
 
 const ChangePw = () => {
+    const navigate = useNavigate();
     const { token } = useParams();
     const initialValues = {
         newPassword: '',
@@ -24,10 +25,9 @@ const ChangePw = () => {
         // Gọi API cập nhật mật khẩu ở đây
         const data = { password: values?.confirmNewPassword, token: token };
         const response = await apiResetPassWord(data);
-        console.log(response);
         if (response?.success) {
             Swal.fire('', 'Change Password Success !', 'success');
-            navigate(`/${path.LOGIN}`);
+            navigate(`/`);
         } else {
             Swal.fire('', 'Change Password Fail !', 'error');
         }

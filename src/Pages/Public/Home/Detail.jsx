@@ -2,8 +2,9 @@ import React, { memo, useEffect, useState } from 'react';
 import icons from '../../../Utils/icons';
 import { apiProducts } from '../../../AxiosClient/apiProducts';
 import { Count } from '../../../Components';
-import { handlePrice, renderStartNumber } from '../../../Utils/commonF';
 import errorImg from '../../../assets/product.png';
+import { Link } from 'react-router-dom';
+import { ProductTitle } from '../../../Components';
 
 const { AiFillStar, AiOutlineMenu } = icons;
 let interval;
@@ -63,20 +64,29 @@ const Detail = () => {
                 </span>
             </small>
             <div className="flex flex-col justify-center items-center">
-                <img src={data?.thumb || errorImg} alt="logo" />
-                <span className="text-base cursor-pointer font-bold ">{data?.title.slice(0, 25)}</span>
-                <div className="flex h-4 my-[6px]">{renderStartNumber(data?.totalRatings, 20)}</div>
-                <div className="flex h-4 text-lg">{handlePrice(data?.price)} VND</div>
+                <Link to={`/${data?.category?.toLowerCase()}/${data?._id}/${data?.title}`}>
+                    <img src={data?.thumb || errorImg} alt="logo" />
+                </Link>
+                <ProductTitle
+                    title={data?.title}
+                    price={data?.price}
+                    totalRatings={data?.totalRatings}
+                    id={data?._id}
+                    category={data?.category}
+                    jc
+                />
             </div>
             <div className="flex gap-3 my-5">
                 <Count time={payload.hour} name="Hours" />
                 <Count time={payload.minutes} name="Minutes" />
                 <Count time={payload.seconds} name="Seconds" />
             </div>
-            <button className="uppercase text-white flex gap-2 justify-center items-center w-full bg-main py-1  hover:bg-gray-800">
-                <AiOutlineMenu />
-                <span>options</span>
-            </button>
+            <Link to={`/${data?.category}/${data?._id}/${data?.title}`}>
+                <button className="uppercase text-white flex gap-2 justify-center items-center w-full bg-main py-1  hover:bg-gray-800">
+                    <AiOutlineMenu />
+                    <span>options</span>
+                </button>
+            </Link>
         </div>
     );
 };

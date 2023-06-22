@@ -4,7 +4,7 @@ import ItemOutService from './ItemOutService';
 
 const Out_Service = () => {
     return (
-        <div className="flex flex-col gap-5 w-full ">
+        <div className="flex flex-col gap-5 w-full mt-3">
             <div className="flex gap-3">
                 <img src={OutService} alt="" className="flex-1 object-cover" />
                 <div className="flex flex-1 flex-col gap-3">

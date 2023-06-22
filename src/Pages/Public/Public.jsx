@@ -21,7 +21,7 @@ const Public = () => {
     }, []);
 
     return (
-        <div className="w-full flex flex-col gap-3">
+        <div className="w-full flex flex-col">
             <div className="w-full">
                 <Header />
             </div>

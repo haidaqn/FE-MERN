@@ -1,8 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { iconSlideBar } from '../../../Utils/Contants';
+import { useSelector } from 'react-redux';
+
 //
-const SlideBar = ({ categories }) => {
+
+const SlideBar = () => {
+    const { categories } = useSelector((state) => state.app);
     return (
         <div className="flex flex-col ">
             {categories?.map((item, index) => (

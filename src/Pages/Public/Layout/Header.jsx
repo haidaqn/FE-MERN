@@ -7,6 +7,8 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../../Store/User/userSlice';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const { GrFacebookOption, GrTwitter, GrInstagram, GrPinterest } = icons;
 
@@ -14,6 +16,7 @@ const Header = () => {
     const { isLogin, current } = useSelector((state) => state.user);
     const [hover, setHover] = useState(false);
     const dispatch = useDispatch();
+    const success = () => toast.success('Đăng xuất thành công!');
 
     return (
         <>
@@ -36,9 +39,10 @@ const Header = () => {
                                             <span className="py-1 px-2 cursor-pointer border">Profile</span>
                                             <span
                                                 className="py-1 px-2 cursor-pointer border"
-                                                onClick={() =>
-                                                    dispatch(logout({ isLogin: false, token: null, userData: null }))
-                                                }
+                                                onClick={() => {
+                                                    success();
+                                                    dispatch(logout({ isLogin: false, token: null, userData: null }));
+                                                }}
                                             >
                                                 Logout
                                             </span>
@@ -74,6 +78,7 @@ const Header = () => {
                 <Content />
                 <Navbar />
             </Layout>
+            <ToastContainer />
         </>
     );
 };

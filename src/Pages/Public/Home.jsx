@@ -13,7 +13,6 @@ import Featured_Products from './Home/Featured_Products';
 
 const Home = () => {
     const dispatch = useDispatch();
-    const { categories } = useSelector((state) => state.app);
 
     useEffect(() => {
         dispatch(getNewProducts());
@@ -25,7 +24,7 @@ const Home = () => {
         <div className="my-3 w-full flex flex-col gap-5">
             <div className="flex gap-5">
                 <div className="flex-1 border">
-                    <SlideBar categories={categories} />
+                    <SlideBar />
                 </div>
                 <div className="flex-3">
                     <img className="object-cover h-full w-ful" src={banner} alt="logo" />

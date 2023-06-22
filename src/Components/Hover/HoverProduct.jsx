@@ -1,12 +1,9 @@
 import React from 'react';
 import { handlePrice } from '../../utils/fs';
-import { HoverProduct } from '../../components';
 import icons from '../../utils/icon';
 import { Link } from 'react-router-dom';
-import path from '../../../Utils/path';
 const { AiFillHeart, BsFillEyeFill, BsCartCheckFill } = icons;
-// to={`/${path.DETAIL_PRODUCT}/${productData._id}/${productData.title}`}
-const HoverCategoryProduct = ({ description, title, price, id }) => {
+const HoverCategoryProduct = ({ description, title, price, id, category }) => {
     return (
         <div className="absolute w-full h-full bg-white animate-slide-top-sm">
             <div className=" border-b">
@@ -25,7 +22,7 @@ const HoverCategoryProduct = ({ description, title, price, id }) => {
                 </ul>
             </div>
             <div className="flex gap-5 mx-7 my-6 absolute top-[330px]">
-                <Link to={`/${path.DETAIL_PRODUCT}/${id}/${title}`}>
+                <Link to={`/${category}/${id}/${title}`}>
                     <HoverProduct icon={<BsCartCheckFill size={20} />} />
                 </Link>
                 <HoverProduct icon={<BsFillEyeFill size={20} />} />
