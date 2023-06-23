@@ -5,12 +5,12 @@ import { Breadcrumbs, Layout } from '../../../Components';
 const Products = () => {
     const fetchData = async () => {
         const response = await apiProducts();
-        console.log(response);
+        // console.log(response);
     };
 
-    useEffect(() => {
-        fetchData();
-    }, []);
+    // useEffect(() => {
+    //     fetchData();
+    // }, []);
 
     return (
         <div>

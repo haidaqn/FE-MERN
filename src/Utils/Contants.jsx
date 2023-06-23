@@ -138,3 +138,16 @@ In preparation for your delivery, please remove existing furniture, pictures, mi
         content: `database`
     }
 ];
+
+export const colors = [
+    { id: 1, color: 'black' },
+    { id: 2, color: 'brown' },
+    { id: 3, color: 'gray' },
+    { id: 4, color: 'white' },
+    { id: 5, color: 'pink' },
+    { id: 6, color: 'yellow' },
+    { id: 7, color: 'orange' },
+    { id: 8, color: 'purple' },
+    { id: 9, color: 'green' },
+    { id: 10, color: 'blue' }
+];
