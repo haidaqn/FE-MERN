@@ -3,8 +3,6 @@ import { NavLink } from 'react-router-dom';
 import useBreadcrumbs from 'use-react-router-breadcrumbs';
 import { IoIosArrowForward } from 'react-icons/io';
 
-const DynamicUserBreadcrumb = ({ match }) => <span>{userNamesById[match.params.userId]}</span>;
-
 const Breadcrumbs = ({ category, title }) => {
     const routes = [
         { path: '/', breadcrumb: 'Home' },
@@ -12,7 +10,6 @@ const Breadcrumbs = ({ category, title }) => {
         { path: '/:category/:pid/:title', breadcrumb: title }
     ];
     const breadcrumbs = useBreadcrumbs(routes);
-    console.log(breadcrumbs);
 
     return (
         <div className="flex items-center mt-1">

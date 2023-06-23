@@ -56,8 +56,8 @@ const Detail = () => {
     return (
         <div className="px-5 my-5">
             <small className="flex items-center mb-10 ">
-                <span className="absolute left-[210px]">
-                    <AiFillStar color="red" size={22} />
+                <span className="absolute left-[12%]">
+                    <AiFillStar color="red" size={30} />
                 </span>
                 <span className="uppercase text-[22px] text-[#505050] font-semibold text-center w-full">
                     daily deals

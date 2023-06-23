@@ -20,10 +20,13 @@ const ProductsList = ({ products }) => {
 
     return (
         <div className="w-full ">
-            <div className="space-x-5" style={{ maxWidth: '950px', margin: '0 auto' }}>
+            <div
+                className="space-x-5"
+                style={{ maxWidth: `${window.innerWidth < 1400 ? '750px' : '990px'}`, margin: '0 auto' }}
+            >
                 <Slider {...settings}>
-                    {products?.map((product, index) => (
-                        <ProductItem key={product?.title} product={product} />
+                    {products?.map((product) => (
+                        <ProductItem product={product} key={product?.title} />
                     ))}
                 </Slider>
             </div>
