@@ -3,7 +3,7 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import { Breadcrumbs, Layout, ProductItem, SearchItem } from '../../../../Components';
 import { apiProducts } from '../../../../AxiosClient/apiProducts';
 import Masonry from 'react-masonry-css';
-
+import { colors, sortBy } from '../../../../Utils/Contants';
 //
 
 const breakpointColumnsObj = {
@@ -20,7 +20,6 @@ const Category = () => {
     const [params] = useSearchParams();
     const fetchDataCategory = async (queries) => {
         const response = await apiProducts(queries);
-
         if (response?.success) {
             setProductCategories(response?.products);
         }
@@ -39,7 +38,8 @@ const Category = () => {
         for (let i of params.entries()) param.push(i);
         let queries = {};
         for (let item of params) queries[item[0]] = item[1];
-        fetchDataCategory(queries);
+        if (queries?.color?.length === 0) fetchDataCategory();
+        else fetchDataCategory(queries);
     }, [params]);
 
     return (
@@ -60,7 +60,13 @@ const Category = () => {
                             handleChangeFilter={handleChangeFilter}
                             type="input"
                         />
-                        <SearchItem name="Color" activeClick={activeClick} handleChangeFilter={handleChangeFilter} />
+                        <SearchItem
+                            name="Color"
+                            type="checkbox"
+                            elementSelect={colors}
+                            activeClick={activeClick}
+                            handleChangeFilter={handleChangeFilter}
+                        />
                     </small>
                 </div>
                 <div className="flex-2 flex  flex-col gap-2">
@@ -68,22 +74,30 @@ const Category = () => {
                     <SearchItem
                         name="Best Selling"
                         js
+                        type="checkbox"
+                        elementSelect={sortBy}
                         activeClick={activeClick}
                         handleChangeFilter={handleChangeFilter}
                     />
                 </div>
             </div>
-            <div className="my-3 mx-[-12px]">
-                <Masonry
-                    breakpointCols={breakpointColumnsObj}
-                    className="flex gap-6"
-                    columnClassName="my-masonry-grid_column"
-                >
-                    {productCategories?.map((product) => (
-                        <ProductItem product={product} key={product?._id} marginCategory />
-                    ))}
-                </Masonry>
-            </div>
+            {productCategories?.length > 0 ? (
+                <div className="my-3 mx-[-12px]">
+                    <Masonry
+                        breakpointCols={breakpointColumnsObj}
+                        className="flex gap-6"
+                        columnClassName="my-masonry-grid_column"
+                    >
+                        {productCategories?.map((product) => (
+                            <ProductItem product={product} key={product?._id} marginCategory />
+                        ))}
+                    </Masonry>
+                </div>
+            ) : (
+                <div className="my-3 h-[200px] flex justify-center items-center">
+                    <h1 className="text-2xl font-semibold ">Không có sản phẩm nào !</h1>
+                </div>
+            )}
         </>
     );
 };

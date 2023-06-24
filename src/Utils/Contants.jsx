@@ -140,14 +140,49 @@ In preparation for your delivery, please remove existing furniture, pictures, mi
 ];
 
 export const colors = [
-    { id: 1, color: 'black' },
-    { id: 2, color: 'brown' },
-    { id: 3, color: 'gray' },
-    { id: 4, color: 'white' },
-    { id: 5, color: 'pink' },
-    { id: 6, color: 'yellow' },
-    { id: 7, color: 'orange' },
-    { id: 8, color: 'purple' },
-    { id: 9, color: 'green' },
-    { id: 10, color: 'blue' }
+    { id: 1, name: 'black' },
+    { id: 2, name: 'brown' },
+    { id: 3, name: 'gray' },
+    { id: 4, name: 'white' },
+    { id: 5, name: 'pink' },
+    { id: 6, name: 'yellow' },
+    { id: 7, name: 'orange' },
+    { id: 8, name: 'purple' },
+    { id: 9, name: 'green' },
+    { id: 10, name: 'blue' }
+];
+
+export const sortBy = [
+    {
+        id: 1,
+        name: 'Featured'
+    },
+    {
+        id: 2,
+        name: 'Best selling'
+    },
+    {
+        id: 3,
+        name: 'Alphabetically, A-Z'
+    },
+    {
+        id: 4,
+        name: 'Alphabetically, Z-A'
+    },
+    {
+        id: 5,
+        name: 'Price, low to high'
+    },
+    {
+        id: 6,
+        name: 'Price, high to low'
+    },
+    {
+        id: 7,
+        name: 'Date, old to new'
+    },
+    {
+        id: 1,
+        name: 'Date, new to old'
+    }
 ];
