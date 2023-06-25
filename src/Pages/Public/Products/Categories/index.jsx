@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useParams, useSearchParams } from 'react-router-dom';
-import { Breadcrumbs, Layout, ProductItem, SearchItem } from '../../../../Components';
+import { useParams, useSearchParams, useNavigate, createSearchParams } from 'react-router-dom';
+import { Breadcrumbs, Layout, ProductItem, SearchItem, InputSelected } from '../../../../Components';
 import { apiProducts } from '../../../../AxiosClient/apiProducts';
 import Masonry from 'react-masonry-css';
 import { colors, sortBy } from '../../../../Utils/Contants';
@@ -15,8 +15,10 @@ const breakpointColumnsObj = {
 
 const Category = () => {
     const { category } = useParams();
+    const navigate = useNavigate();
     const [productCategories, setProductCategories] = useState(null);
     const [activeClick, setActiveClick] = useState(null);
+    const [sort, setSort] = useState(null);
     const [params] = useSearchParams();
     const fetchDataCategory = async (queries) => {
         const response = await apiProducts(queries);
@@ -24,6 +26,26 @@ const Category = () => {
             setProductCategories(response?.products);
         }
     };
+
+    useEffect(() => {
+        let param = [];
+        for (let i of params.entries()) param.push(i);
+        let queries = {};
+        for (let item of params) queries[item[0]] = item[1];
+        let priceQuery = {};
+        if (queries.from && queries.to) {
+            priceQuery = { $and: [{ price: { gte: queries.from } }, { price: { lte: queries.to } }] };
+            delete queries.price;
+        }
+        if (queries?.from) queries.price = { gte: queries.from };
+        if (queries?.to) queries.price = { lte: queries.to };
+
+        delete queries.from;
+        delete queries.to;
+        const q = { ...priceQuery, ...queries };
+        // console.log(q);
+        fetchDataCategory(q);
+    }, [params]);
 
     const handleChangeFilter = useCallback(
         (name) => {
@@ -33,28 +55,23 @@ const Category = () => {
         [activeClick]
     );
 
+    const changeValue = useCallback(
+        (value) => {
+            setSort(value);
+        },
+        [sort]
+    );
+
     useEffect(() => {
-        let param = [];
-        for (let i of params.entries()) param.push(i);
-        let queries = {};
-        for (let item of params) queries[item[0]] = item[1];
+        navigate({
+            pathname: `/${category}`,
+            search: createSearchParams({
+                sort: sort
+            }).toString()
+        });
+    }, [sort]);
 
-        let priceQuery = {};
-        if (queries.from && queries.to) {
-            priceQuery = { $and: [{ price: { gte: queries.from } }, { price: { lte: queries.to } }] };
-        }
-        if (queries?.from) queries.price = { gte: queries.from };
-        if (queries?.to) queries.price = { lte: queries.to };
-
-        delete queries.price;
-        delete queries.from;
-        delete queries.to;
-        console.log(...queries);
-        console.log(...priceQuery);
-        const q = { ...queries, ...priceQuery };
-        console.log(q);
-        fetchDataCategory(q);
-    }, [params]);
+    //
 
     return (
         <>
@@ -85,14 +102,9 @@ const Category = () => {
                 </div>
                 <div className="flex-2 flex  flex-col gap-2">
                     <span className="text-lg text-gray-500">Sort by</span>
-                    <SearchItem
-                        name="Best Selling"
-                        js
-                        type="checkbox"
-                        elementSelect={sortBy}
-                        activeClick={activeClick}
-                        handleChangeFilter={handleChangeFilter}
-                    />
+                    <div className="w-full">
+                        <InputSelected value={sort} options={sortBy} changeValue={changeValue} />
+                    </div>
                 </div>
             </div>
             {productCategories?.length > 0 ? (

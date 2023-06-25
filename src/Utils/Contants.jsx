@@ -155,34 +155,37 @@ export const colors = [
 export const sortBy = [
     {
         id: 1,
-        name: 'Featured'
-    },
-    {
-        id: 2,
+        value: '-sold',
         name: 'Best selling'
     },
     {
-        id: 3,
+        id: 2,
+        value: '-title',
         name: 'Alphabetically, A-Z'
     },
     {
-        id: 4,
+        id: 3,
+        value: 'title',
         name: 'Alphabetically, Z-A'
     },
     {
-        id: 5,
+        id: 4,
+        value: '-price',
         name: 'Price, low to high'
     },
     {
-        id: 6,
+        id: 5,
+        value: 'price',
         name: 'Price, high to low'
     },
     {
-        id: 7,
+        id: 6,
+        value: '-createdAt',
         name: 'Date, old to new'
     },
     {
-        id: 10,
+        id: 7,
+        value: 'createdAt',
         name: 'Date, new to old'
     }
 ];

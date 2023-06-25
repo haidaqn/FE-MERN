@@ -75,6 +75,7 @@ const SearchItem = ({ name, js, activeClick, handleChangeFilter, type, elementSe
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         setSelected([]);
+                                        handleChangeFilter(null);
                                     }}
                                 >
                                     Reset
@@ -84,7 +85,7 @@ const SearchItem = ({ name, js, activeClick, handleChangeFilter, type, elementSe
                                 {elementSelect?.map((color) => (
                                     <div
                                         key={color.id}
-                                        className="flex gap-4 text-base cursor-pointer"
+                                        className="flex  items-center gap-4 text-base cursor-pointer"
                                         onClick={() => handleSelect(color.name)}
                                     >
                                         <input
@@ -112,6 +113,7 @@ const SearchItem = ({ name, js, activeClick, handleChangeFilter, type, elementSe
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         setPrice({ from: '', to: '' });
+                                        handleChangeFilter(null);
                                     }}
                                 >
                                     Reset
