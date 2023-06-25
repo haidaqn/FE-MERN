@@ -182,7 +182,7 @@ export const sortBy = [
         name: 'Date, old to new'
     },
     {
-        id: 1,
+        id: 10,
         name: 'Date, new to old'
     }
 ];

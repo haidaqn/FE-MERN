@@ -10,7 +10,7 @@ const { AiOutlineDown } = icons;
 const SearchItem = ({ name, js, activeClick, handleChangeFilter, type, elementSelect }) => {
     const [selected, setSelected] = useState([]);
     const [bestPrice, setBestPrice] = useState(0);
-    const [price, setPrice] = useState([0, 0]);
+    const [price, setPrice] = useState({ from: '', to: '' });
     const { category } = useParams();
     const navigate = useNavigate();
     const handleSelect = (item) => {
@@ -37,12 +37,21 @@ const SearchItem = ({ name, js, activeClick, handleChangeFilter, type, elementSe
     }, [selected]);
 
     useEffect(() => {
-        fetchBestPrice();
-    }, [type]);
+        if (type === 'input') fetchBestPrice();
+    }, [price.from, price.to]);
+
+    const debouncePriceFrom = useDebounce(price.from, 500);
+    const debouncePriceTo = useDebounce(price.to, 500);
 
     useEffect(() => {
-        console.log(price);
-    }, [price]);
+        const data = {};
+        if (+price?.from > 0) data.from = Number(price.from);
+        if (+price?.to > 0) data.to = Number(price.to);
+        navigate({
+            pathname: `/${category}`,
+            search: createSearchParams(data).toString()
+        });
+    }, [debouncePriceFrom, debouncePriceTo]);
 
     return (
         <div
@@ -79,6 +88,7 @@ const SearchItem = ({ name, js, activeClick, handleChangeFilter, type, elementSe
                                         onClick={() => handleSelect(color.name)}
                                     >
                                         <input
+                                            key={color.id}
                                             readOnly
                                             type={type}
                                             name={color.name}
@@ -101,6 +111,7 @@ const SearchItem = ({ name, js, activeClick, handleChangeFilter, type, elementSe
                                     className="underline hover:text-main"
                                     onClick={(e) => {
                                         e.stopPropagation();
+                                        setPrice({ from: '', to: '' });
                                     }}
                                 >
                                     Reset
@@ -115,14 +126,8 @@ const SearchItem = ({ name, js, activeClick, handleChangeFilter, type, elementSe
                                 <div className="p-3 flex gap-3 justify-center items-center">
                                     <label htmlFor="from">from</label>
                                     <input
-                                        value={price[0]}
-                                        onChange={(e) =>
-                                            setPrice((prev) =>
-                                                prev.map((item, index) =>
-                                                    index === 0 ? (item = e.target.value) : item
-                                                )
-                                            )
-                                        }
+                                        value={price.from}
+                                        onChange={(e) => setPrice((prev) => ({ ...prev, from: e.target.value }))}
                                         type="number"
                                         name="from"
                                         id="from"
@@ -132,14 +137,8 @@ const SearchItem = ({ name, js, activeClick, handleChangeFilter, type, elementSe
                                 <div className="p-3 flex gap-3 justify-center items-center">
                                     <label htmlFor="to">to</label>
                                     <input
-                                        value={price[1]}
-                                        onChange={(e) =>
-                                            setPrice((prev) =>
-                                                prev.map((item, index) =>
-                                                    index === 1 ? (item = e.target.value) : item
-                                                )
-                                            )
-                                        }
+                                        value={price.to}
+                                        onChange={(e) => setPrice((prev) => ({ ...prev, to: e.target.value }))}
                                         type="number"
                                         name="to"
                                         id="to"

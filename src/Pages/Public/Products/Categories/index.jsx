@@ -38,8 +38,22 @@ const Category = () => {
         for (let i of params.entries()) param.push(i);
         let queries = {};
         for (let item of params) queries[item[0]] = item[1];
-        if (queries?.color?.length === 0) fetchDataCategory();
-        else fetchDataCategory(queries);
+
+        let priceQuery = {};
+        if (queries.from && queries.to) {
+            priceQuery = { $and: [{ price: { gte: queries.from } }, { price: { lte: queries.to } }] };
+        }
+        if (queries?.from) queries.price = { gte: queries.from };
+        if (queries?.to) queries.price = { lte: queries.to };
+
+        delete queries.price;
+        delete queries.from;
+        delete queries.to;
+        console.log(...queries);
+        console.log(...priceQuery);
+        const q = { ...queries, ...priceQuery };
+        console.log(q);
+        fetchDataCategory(q);
     }, [params]);
 
     return (
