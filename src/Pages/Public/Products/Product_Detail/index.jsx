@@ -23,7 +23,7 @@ const Product_Detail = () => {
     }, [pid]);
 
     return (
-        <div className="mb-5">
+        <div className="mb-5 ">
             <div className="bg-[#f7f7f7] pt-2 flex flex-col gap-3 pb-3  mx-[-14%]">
                 <Layout>
                     <h1 className="font-bold text-xl">{data?.title}</h1>
@@ -41,7 +41,15 @@ const Product_Detail = () => {
                     <Properties />
                 </div>
             </div>
-            <ProductInformation />
+            <div className="w-full">
+                <ProductInformation
+                    ratings={data?.ratings}
+                    description={data?.description}
+                    totalRatings={data?.totalRatings}
+                    title={title}
+                    pid={pid}
+                />
+            </div>
         </div>
     );
 };

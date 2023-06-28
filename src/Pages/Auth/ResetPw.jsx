@@ -15,9 +15,9 @@ const ResetPw = () => {
         email: Yup.string().email('Email không hợp lệ').required('Vui lòng nhập email')
     });
     const handleSubmit = async (values, { setSubmitting }) => {
-        console.log(values);
+        // console.log(values);
         const response = await apiForgotPassword(values);
-        console.log(response);
+        // console.log(response);
         if (response?.success) {
             Swal.fire('', 'Vui lòng kiểm tra email', 'success');
             navigate('/');

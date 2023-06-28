@@ -27,7 +27,7 @@ const Login = () => {
         const response = await apiLogin(values);
         if (response?.success) {
             Swal.fire('', 'LOGIN Successfully', 'success');
-            dispatch(login({ isLogin: true, token: response.accessToken, userData: response.userData }));
+            dispatch(login({ isLogin: true, token: response?.accessToken, userData: response?.userData }));
             navigate('/');
         } else {
             Swal.fire('', 'LOGIN FAIL', 'error');

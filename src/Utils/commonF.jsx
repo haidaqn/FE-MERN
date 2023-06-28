@@ -15,3 +15,14 @@ export const handlePrice = (price) => {
         maximumFractionDigits: 0
     }).format(price);
 };
+
+export function roundDecimal(number) {
+    var roundedNumber = Math.round(number);
+    var decimalPart = roundedNumber % 1;
+
+    if (decimalPart >= 0.5) {
+        return Math.ceil(number);
+    } else {
+        return Math.floor(number);
+    }
+}

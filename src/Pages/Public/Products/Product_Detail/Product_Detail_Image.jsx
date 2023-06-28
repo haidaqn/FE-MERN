@@ -6,26 +6,8 @@ const Product_Detail_Image = ({ thumb, images }) => {
     return (
         <>
             <div className="w-full">
-                <div className="w-[480px] border p-12 ">
-                    <ReactImageMagnify
-                        {...{
-                            smallImage: {
-                                alt: 'Wristwatch by Ted Baker London',
-                                isFluidWidth: true,
-                                src: image || thumb
-                            },
-                            largeImage: {
-                                src: image || thumb,
-                                width: 1800,
-                                height: 1200
-                            },
-                            enlargedImageContainerDimensions: {
-                                width: '100%',
-                                height: '100%'
-                            },
-                            hoverDelayInMs: 300 // Độ trễ khi hover (300ms ở đây)
-                        }}
-                    />
+                <div className="max-w-[480px] max-h-[480px] object-contain overflow-hidden border p-12 ">
+                    <img src={image || thumb} alt="" />
                 </div>
             </div>
             <div className="flex gap-6 mt-3">
@@ -35,7 +17,7 @@ const Product_Detail_Image = ({ thumb, images }) => {
                         onClick={() => setImage(item)}
                         alt="logo"
                         key={index}
-                        className="w-[100px] border p-5 flex-1 cursor-pointer"
+                        className="w-[100px] border p-5 flex-1 cursor-pointer object-contain"
                     />
                 ))}
             </div>

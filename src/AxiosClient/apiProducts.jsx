@@ -12,3 +12,13 @@ export const apiProduct = (pid) =>
         url: `/product/${pid}`,
         method: 'get'
     });
+
+export const apiRatings = (data, token) =>
+    axios({
+        url: `/product/ratings`,
+        method: 'put',
+        data,
+        headers: {
+            'access-token': token
+        }
+    });

@@ -3,10 +3,10 @@ import { apiProducts } from '../../../AxiosClient/apiProducts';
 import { Breadcrumbs, Layout } from '../../../Components';
 
 const Products = () => {
-    const fetchData = async () => {
-        const response = await apiProducts();
-        // console.log(response);
-    };
+    // const fetchData = async () => {
+    //     const response = await apiProducts();
+    //     // console.log(response);
+    // };
 
     // useEffect(() => {
     //     fetchData();

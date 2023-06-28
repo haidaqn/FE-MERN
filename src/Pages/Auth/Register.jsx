@@ -23,7 +23,7 @@ const Register = () => {
         mobile: Yup.string().required('Vui lòng nhập số điện thoại')
     });
     const handleSubmit = async (values, { setSubmitting }) => {
-        console.log('Register:', values);
+        // console.log('Register:', values);
         setIsLoading(true);
         const response = await apiRegister(values);
         if (response?.success) {

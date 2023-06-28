@@ -1,17 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useParams, useSearchParams, useNavigate, createSearchParams } from 'react-router-dom';
-import { Breadcrumbs, Layout, ProductItem, SearchItem, InputSelected } from '../../../../Components';
+import { Breadcrumbs, Layout, SearchItem, InputSelected } from '../../../../Components';
 import { apiProducts } from '../../../../AxiosClient/apiProducts';
-import Masonry from 'react-masonry-css';
 import { colors, sortBy } from '../../../../Utils/Contants';
-//
+import CategoryItem from './CategoryItem';
 
-const breakpointColumnsObj = {
-    default: 4,
-    1100: 3,
-    700: 2,
-    500: 1
-};
+//
 
 const Category = () => {
     const { category } = useParams();
@@ -63,12 +57,13 @@ const Category = () => {
     );
 
     useEffect(() => {
-        navigate({
-            pathname: `/${category}`,
-            search: createSearchParams({
-                sort: sort
-            }).toString()
-        });
+        if (sort?.length > 0)
+            navigate({
+                pathname: `/${category}`,
+                search: createSearchParams({
+                    sort: sort
+                }).toString()
+            });
     }, [sort]);
 
     //
@@ -108,17 +103,7 @@ const Category = () => {
                 </div>
             </div>
             {productCategories?.length > 0 ? (
-                <div className="my-3 mx-[-12px]">
-                    <Masonry
-                        breakpointCols={breakpointColumnsObj}
-                        className="flex gap-6"
-                        columnClassName="my-masonry-grid_column"
-                    >
-                        {productCategories?.map((product) => (
-                            <ProductItem product={product} key={product?._id} marginCategory />
-                        ))}
-                    </Masonry>
-                </div>
+                <CategoryItem categories={productCategories} />
             ) : (
                 <div className="my-3 h-[200px] flex justify-center items-center">
                     <h1 className="text-2xl font-semibold ">Không có sản phẩm nào !</h1>

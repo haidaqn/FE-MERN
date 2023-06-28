@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Public from './Pages/Public/Public';
 import path from './Utils/path';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCategories } from './Store/App/asyncAction';
+import { AiFillCaretUp } from 'react-icons/ai';
 import {
     Home,
     FAQ,
@@ -16,9 +19,7 @@ import {
     Product_Detail,
     Category
 } from './Pages';
-import { useDispatch } from 'react-redux';
-import { getCategories } from './Store/App/asyncAction';
-import { AiFillCaretUp } from 'react-icons/ai';
+import { Modal } from './Components';
 
 //
 
@@ -37,12 +38,13 @@ const App = () => {
         };
     }, []);
     const dispatch = useDispatch();
-
+    const { isShowModal, modalChildren } = useSelector((state) => state.app);
     useEffect(() => {
         dispatch(getCategories());
     }, []);
     return (
-        <div className="min-h-screen font-main w-full">
+        <div className="font-main w-full relative">
+            {isShowModal && <Modal>{modalChildren}</Modal>}
             <Routes>
                 <Route path={path.LOGIN} element={<Login />}></Route>
                 <Route path={path.REGISTER} element={<Register />} />

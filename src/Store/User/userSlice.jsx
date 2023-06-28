@@ -20,20 +20,6 @@ export const userSlice = createSlice({
                 (state.token = action.payload.token);
         }
     }
-    // extraReducers: (builder) => {
-    //     builder.addCase(Actions.getCategories.pending, (state) => {
-    //         state.isLoading = true;
-    //     });
-    //     builder.addCase(Actions.getCategories.fulfilled, (state, action) => {
-    //         // console.log(action);
-    //         state.isLoading = false;
-    //         state.current = action.payload;
-    //     });
-    //     builder.addCase(Actions.getCategories.rejected, (state, action) => {
-    //         state.isLoading = false;
-    //         state.current = null;
-    //     });
-    // }
 });
 
 export const { login, logout } = userSlice.actions;

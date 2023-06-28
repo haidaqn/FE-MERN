@@ -1,5 +1,6 @@
 import React from 'react';
 import { handlePrice, renderStartNumber } from '../../../../Utils/commonF';
+import { Description } from '../../../../Components';
 
 const Detail_Information = ({ data, quantity, setQuantity }) => {
     const increment = () => {
@@ -13,6 +14,9 @@ const Detail_Information = ({ data, quantity, setQuantity }) => {
             setQuantity((prev) => +prev - 1);
         }
     };
+
+    //
+
     return (
         <>
             <small className="px-5 pt-2 flex flex-col gap-2">
@@ -21,22 +25,20 @@ const Detail_Information = ({ data, quantity, setQuantity }) => {
                     <span className="flex h-4 justify-center items-center">
                         {renderStartNumber(data?.totalRatings, 22)}
                     </span>
-                    <span className="flex justify-center items-center text-lg text-main">( Đã bán: {data?.sold})</span>
+                    <span className="flex justify-center items-center text-lg text-main">
+                        ( Sold: {data?.sold}, In Stock : {data?.quantity})
+                    </span>
                 </span>
-                <div className="ml-5">
-                    <ul className="mt-2 list-disc text-[15px] flex flex-col gap-2">
-                        {data?.description.map((item, index) => (
-                            <li key={index}>{item}</li>
-                        ))}
-                    </ul>
-                </div>
+                <Description description={data?.description} />
             </small>
             <div className="w-full flex gap-5 items-center mx-5">
                 <span className="uppercase">Quantity :</span>
                 <div className="flex items-center my-4 ">
                     <button
                         onClick={() => decrement()}
-                        className="bg-gray-300 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded-l"
+                        className={`${
+                            quantity > 0 ? 'bg-gray-500' : 'bg-gray-300'
+                        } hover:bg-gray-500 text-white font-bold py-2 px-4 rounded-l`}
                     >
                         -
                     </button>
@@ -48,7 +50,9 @@ const Detail_Information = ({ data, quantity, setQuantity }) => {
                     />
                     <button
                         onClick={() => increment()}
-                        className="bg-gray-300 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded-r"
+                        className={`${
+                            quantity < data?.quantity ? 'bg-gray-500' : 'bg-gray-300'
+                        } hover:bg-gray-500 text-white font-bold py-2 px-4 rounded-r`}
                     >
                         +
                     </button>
