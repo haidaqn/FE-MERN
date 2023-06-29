@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import logo from '../../../assets/logo.png';
@@ -6,12 +6,16 @@ import { options } from '../../../Utils/Contants';
 import { AiFillStar } from 'react-icons/ai';
 import { apiRatings } from '../../../AxiosClient/apiProducts';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { showModal } from '../../../Store/App/appSlice';
+import { toast } from 'react-toastify';
 
 const validationSchema = Yup.object().shape({
     selectedOption: Yup.string().required('Please select an option.')
 });
 
-const VoteOption = ({ nameProduct, pid }) => {
+const VoteOption = ({ nameProduct, pid, rerender }) => {
+    const dispatch = useDispatch();
     const voteOptionRef = useRef();
     const [selectedOption, setSelectedOption] = useState('');
     const { token } = useSelector((state) => state.user);
@@ -25,8 +29,10 @@ const VoteOption = ({ nameProduct, pid }) => {
         onSubmit: async (values) => {
             if (values.selectedOption !== '') {
                 const data = { star: values.selectedOption, comment: values.message, pid };
-                const response = await apiRatings(data, token);
-                console.log(response);
+                await apiRatings(data, token);
+                toast.success('Vote Success!');
+                rerender();
+                dispatch(showModal({ isShowModal: false, modalChildren: null }));
             }
         }
     });
@@ -94,4 +100,4 @@ const VoteOption = ({ nameProduct, pid }) => {
     );
 };
 
-export default VoteOption;
+export default memo(VoteOption);

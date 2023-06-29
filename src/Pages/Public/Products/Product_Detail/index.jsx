@@ -11,6 +11,7 @@ const Product_Detail = () => {
     const { pid, category, title } = useParams();
     const [data, setData] = useState(null);
     const [quantity, setQuantity] = useState(1);
+    const [update, setUpdate] = useState(false);
     const fetchData = async () => {
         const response = await apiProduct(pid);
         if (response?.success) setData(response?.product);
@@ -20,7 +21,11 @@ const Product_Detail = () => {
 
     useEffect(() => {
         fetchData();
-    }, [pid]);
+    }, [update]);
+
+    const rerender = useCallback(() => {
+        setUpdate(!update);
+    }, []);
 
     return (
         <div className="mb-5 ">
@@ -48,6 +53,7 @@ const Product_Detail = () => {
                     totalRatings={data?.totalRatings}
                     title={title}
                     pid={pid}
+                    rerender={rerender}
                 />
             </div>
         </div>

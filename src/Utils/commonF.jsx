@@ -26,3 +26,18 @@ export function roundDecimal(number) {
         return Math.floor(number);
     }
 }
+
+// export function countRatingByStars(data) {
+//     let ratingCounts = {};
+//     for (let i = 0; i < data.length; i++) {
+//         let star = data[i].star;
+//         if (star) {
+//             if (ratingCounts[star]) {
+//                 ratingCounts[star]++;
+//             } else {
+//                 ratingCounts[star] = 1;
+//             }
+//         }
+//     }
+//     return ratingCounts;
+// }

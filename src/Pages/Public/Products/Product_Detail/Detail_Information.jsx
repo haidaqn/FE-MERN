@@ -23,7 +23,7 @@ const Detail_Information = ({ data, quantity, setQuantity }) => {
                 <span className="text-[30px]">{handlePrice(data?.price)} VND</span>
                 <span className="flex h-4 gap-4 items-center">
                     <span className="flex h-4 justify-center items-center">
-                        {renderStartNumber(data?.totalRatings, 22)}
+                        {renderStartNumber(Math.round(data?.totalRatings), 22)}
                     </span>
                     <span className="flex justify-center items-center text-lg text-main">
                         ( Sold: {data?.sold}, In Stock : {data?.quantity})

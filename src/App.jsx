@@ -20,6 +20,8 @@ import {
     Category
 } from './Pages';
 import { Modal } from './Components';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 //
 
@@ -69,6 +71,7 @@ const App = () => {
                     <AiFillCaretUp size={30} color="white" />
                 </a>
             )}
+            <ToastContainer />
         </div>
     );
 };

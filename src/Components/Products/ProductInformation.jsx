@@ -3,9 +3,8 @@ import { product_information } from '../../Utils/Contants';
 import Rating from './RateAndComment/Rating';
 import Description from './RateAndComment/Description';
 
-const ProductInformation = ({ ratings, description, totalRatings, title, pid }) => {
+const ProductInformation = ({ ratings, description, totalRatings, title, pid, rerender }) => {
     const [active, setActive] = useState(3);
-
     return (
         <div className="relative">
             <div className=" flex gap-3 relative bottom-[-1px]">
@@ -49,7 +48,13 @@ const ProductInformation = ({ ratings, description, totalRatings, title, pid }) 
                     )}
                     {active === 4 && (
                         <div className="w-full">
-                            <Rating title={title} ratings={ratings} totalRatings={totalRatings} pid={pid} />
+                            <Rating
+                                title={title}
+                                rerender={rerender}
+                                ratings={ratings}
+                                totalRatings={totalRatings}
+                                pid={pid}
+                            />
                         </div>
                     )}
                 </div>

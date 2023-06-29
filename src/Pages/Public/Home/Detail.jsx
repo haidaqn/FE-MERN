@@ -13,7 +13,7 @@ const Detail = () => {
     const [data, SetData] = useState(null);
     const [expireTime, setExpireTime] = useState(false);
     const fetchData = async () => {
-        const response = await apiProducts({ limit: 1, page: Math.round(Math.random() * 10), totalRatings: 5 });
+        const response = await apiProducts({ limit: 1, totalRatings: 5 });
         if (response?.success) {
             SetData(response?.products[0]);
             const h = 23 - new Date().getHours();
