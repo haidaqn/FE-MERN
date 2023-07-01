@@ -8,6 +8,7 @@ import VoteOption from './VoteOption';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import path from '../../../Utils/path';
+import Comment from '../Comment/index';
 
 const Rating = ({ ratings, totalRatings, title, pid, rerender }) => {
     const dispatch = useDispatch();
@@ -53,7 +54,7 @@ const Rating = ({ ratings, totalRatings, title, pid, rerender }) => {
                                 rating={item + 1}
                                 key={item}
                                 countRating={ratings?.filter((rating) => rating.star === item + 1)?.length}
-                                totalRatings={ratings.length || 1}
+                                totalRatings={ratings?.length || 1}
                             />
                         ))}
                 </div>
@@ -65,6 +66,17 @@ const Rating = ({ ratings, totalRatings, title, pid, rerender }) => {
                     name="Rate Now !"
                     style="hover:opacity-90 flex justify-center items-center mt-2 p-2 text-[14px] text-white font-bold bg-main uppercase rounded-md w-[300px]"
                 />
+            </div>
+            <div className="flex flex-col gap-3">
+                {ratings?.map((rating) => (
+                    <Comment
+                        key={rating?._id}
+                        time={rating?.updateAt}
+                        name={`${rating?.postedBy?.firstName} ${rating?.postedBy?.lastName}`}
+                        comment={rating?.comment}
+                        rating={rating?.star}
+                    />
+                ))}
             </div>
         </>
     );

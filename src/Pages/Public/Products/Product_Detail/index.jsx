@@ -36,7 +36,7 @@ const Product_Detail = () => {
                 </Layout>
             </div>
             <div className="flex gap-7 mt-5 mb-3">
-                <div className="flex-2 flex flex-col gap-5">
+                <div className="flex-3 flex flex-col gap-5">
                     <Product_Detail_Image thumb={data?.thumb} images={data?.images} />
                 </div>
                 <div className="flex-3 border">

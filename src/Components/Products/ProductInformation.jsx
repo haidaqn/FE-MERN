@@ -27,37 +27,19 @@ const ProductInformation = ({ ratings, description, totalRatings, title, pid, re
                         {tab?.name}
                     </span>
                 ))}
-                <span
-                    onClick={() => setActive(4)}
-                    className={`uppercase text-base font-medium cursor-pointer  p-2 ${
-                        active === 4 ? 'bg-white border border-b-0' : 'bg-gray-200'
-                    }`}
-                >
-                    Customer Review
-                </span>
             </div>
-            <div className="w-full h-full border">
-                <div className="p-4">
-                    {active === 3 && (
-                        <div className="w-full">
-                            <Description description={description} />
-                        </div>
-                    )}
-                    {product_information.some((product) => product.id === +active) && (
-                        <div className="w-full">{product_information[active].content}</div>
-                    )}
-                    {active === 4 && (
-                        <div className="w-full">
-                            <Rating
-                                title={title}
-                                rerender={rerender}
-                                ratings={ratings}
-                                totalRatings={totalRatings}
-                                pid={pid}
-                            />
-                        </div>
-                    )}
-                </div>
+            <div className="w-full h-full border p-4 mb-5">
+                {active === 3 && (
+                    <div className="w-full">
+                        <Description description={description} />
+                    </div>
+                )}
+                {product_information.some((product) => product.id === +active) && (
+                    <div className="w-full">{product_information[active].content}</div>
+                )}
+            </div>
+            <div className="w-full border p-5">
+                <Rating title={title} rerender={rerender} ratings={ratings} totalRatings={totalRatings} pid={pid} />
             </div>
         </div>
     );

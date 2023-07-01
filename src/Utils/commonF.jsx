@@ -27,17 +27,16 @@ export function roundDecimal(number) {
     }
 }
 
-// export function countRatingByStars(data) {
-//     let ratingCounts = {};
-//     for (let i = 0; i < data.length; i++) {
-//         let star = data[i].star;
-//         if (star) {
-//             if (ratingCounts[star]) {
-//                 ratingCounts[star]++;
-//             } else {
-//                 ratingCounts[star] = 1;
-//             }
-//         }
-//     }
-//     return ratingCounts;
-// }
+export const generateRange = (start, end) => {
+    const length = end - start + 1;
+    return Array.from({ length }, (item, index) => start + index);
+};
+
+/* 
+    start : 3 
+    end : 7
+    => [3,4,5,6,7]
+
+    callback trong array from de dieu chinh so bat dau
+
+*/

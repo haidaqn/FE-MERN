@@ -28,11 +28,13 @@ const VoteOption = ({ nameProduct, pid, rerender }) => {
         validationSchema,
         onSubmit: async (values) => {
             if (values.selectedOption !== '') {
-                const data = { star: values.selectedOption, comment: values.message, pid };
-                await apiRatings(data, token);
-                toast.success('Vote Success!');
-                rerender();
-                dispatch(showModal({ isShowModal: false, modalChildren: null }));
+                const data = { star: values.selectedOption, comment: values.message, pid, updateAt: Date.now() };
+                const response = await apiRatings(data, token);
+                if (response?.success) {
+                    toast.success('Vote Success!');
+                    rerender();
+                    dispatch(showModal({ isShowModal: false, modalChildren: null }));
+                }
             }
         }
     });

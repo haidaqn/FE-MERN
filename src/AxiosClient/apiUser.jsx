@@ -15,6 +15,12 @@ export const apiLogin = (data) =>
         data
     });
 
+export const apiLogout = () =>
+    axios({
+        url: '/user/logout',
+        method: 'post'
+    });
+
 export const apiForgotPassword = (data) => {
     return axios({
         url: '/user/forgotpassword',

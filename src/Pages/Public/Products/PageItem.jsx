@@ -1,6 +1,6 @@
 import React from 'react';
 import Masonry from 'react-masonry-css';
-import { ProductItem } from '../../../../Components';
+import { ProductItem } from '../../../Components';
 
 const breakpointColumnsObj = {
     default: 4,
@@ -8,7 +8,7 @@ const breakpointColumnsObj = {
     700: 2,
     500: 1
 };
-const CategoryItem = ({ categories }) => {
+const PageItem = ({ products }) => {
     return (
         <div className="my-3 mx-[-12px]">
             <Masonry
@@ -16,7 +16,7 @@ const CategoryItem = ({ categories }) => {
                 className="flex gap-6"
                 columnClassName="my-masonry-grid_column"
             >
-                {categories?.map((product) => (
+                {products?.map((product) => (
                     <ProductItem product={product} key={product?._id} marginCategory />
                 ))}
             </Masonry>
@@ -24,4 +24,4 @@ const CategoryItem = ({ categories }) => {
     );
 };
 
-export default CategoryItem;
+export default PageItem;

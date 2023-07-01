@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useParams, useSearchParams, useNavigate, createSearchParams } from 'react-router-dom';
-import { Breadcrumbs, Layout, SearchItem, InputSelected } from '../../../../Components';
+import { Breadcrumbs, Layout, SearchItem, InputSelected, Pagination } from '../../../../Components';
 import { apiProducts } from '../../../../AxiosClient/apiProducts';
 import { colors, sortBy } from '../../../../Utils/Contants';
-import CategoryItem from './CategoryItem';
+import PageItem from '../PageItem';
 
 //
 
@@ -17,7 +17,7 @@ const Category = () => {
     const fetchDataCategory = async (queries) => {
         const response = await apiProducts(queries);
         if (response?.success) {
-            setProductCategories(response?.products);
+            setProductCategories(response);
         }
     };
 
@@ -37,8 +37,8 @@ const Category = () => {
         delete queries.from;
         delete queries.to;
         const q = { ...priceQuery, ...queries };
-        // console.log(q);
         fetchDataCategory(q);
+        window.scrollTo(0, 0);
     }, [params]);
 
     const handleChangeFilter = useCallback(
@@ -102,13 +102,16 @@ const Category = () => {
                     </div>
                 </div>
             </div>
-            {productCategories?.length > 0 ? (
-                <CategoryItem categories={productCategories} />
+            {productCategories?.count > 0 ? (
+                <PageItem products={productCategories?.products} />
             ) : (
                 <div className="my-3 h-[200px] flex justify-center items-center">
                     <h1 className="text-2xl font-semibold ">Không có sản phẩm nào !</h1>
                 </div>
             )}
+            <div className="flex items-center justify-center my-4">
+                <Pagination totalCount={productCategories?.count} />
+            </div>
         </>
     );
 };

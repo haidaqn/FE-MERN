@@ -5,6 +5,9 @@ export { default as ProductItem } from './Products/ProductItem';
 export { default as ProductTitle } from './Products/Product/TitleProduct';
 export { default as Breadcrumbs } from './Common/Breadcrumbs';
 export { default as InputSelected } from './InputFields/InputSelected';
+export { default as Pagination } from './Pagination/index';
+
+//
 
 export { default as Modal } from './Modal/Modal';
 
