@@ -1,6 +1,6 @@
 import React, { memo, useState, useEffect } from 'react';
 import icons from '../../Utils/icons';
-import { useNavigate, createSearchParams, useParams } from 'react-router-dom';
+import { useNavigate, createSearchParams, useParams, useSearchParams } from 'react-router-dom';
 import { apiProducts } from '../../AxiosClient/apiProducts';
 import { handlePrice } from '../../Utils/commonF';
 import useDebounce from '../../hooks/useDebounce';
@@ -12,6 +12,7 @@ const SearchItem = ({ name, js, activeClick, handleChangeFilter, type, elementSe
     const [bestPrice, setBestPrice] = useState(0);
     const [price, setPrice] = useState({ from: '', to: '' });
     const { category } = useParams();
+    const [params] = useSearchParams();
     const navigate = useNavigate();
     const handleSelect = (item) => {
         const already = selected.find((element) => element === item);
@@ -27,11 +28,14 @@ const SearchItem = ({ name, js, activeClick, handleChangeFilter, type, elementSe
 
     useEffect(() => {
         if (selected?.length > 0) {
+            let param = [];
+            for (let i of params.entries()) param.push(i);
+            const queries = {};
+            for (let i of param) queries[i[0]] = i[1];
+            queries.color = selected.join(',');
             navigate({
                 pathname: `/${category}`,
-                search: createSearchParams({
-                    color: selected.join(',')
-                }).toString()
+                search: createSearchParams(queries).toString()
             });
         } else navigate(`/${category}`);
     }, [selected]);

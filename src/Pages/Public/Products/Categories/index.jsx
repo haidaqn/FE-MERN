@@ -33,10 +33,10 @@ const Category = () => {
         }
         if (queries?.from) queries.price = { gte: queries.from };
         if (queries?.to) queries.price = { lte: queries.to };
-
+        queries.page = 1;
         delete queries.from;
         delete queries.to;
-        const q = { ...priceQuery, ...queries };
+        const q = { category, ...priceQuery, ...queries };
         fetchDataCategory(q);
         window.scrollTo(0, 0);
     }, [params]);
@@ -110,7 +110,7 @@ const Category = () => {
                 </div>
             )}
             <div className="flex items-center justify-center my-4">
-                <Pagination totalCount={productCategories?.count} />
+                <Pagination totalCount={productCategories?.count} isCategory={true} paramName="category" />
             </div>
         </>
     );

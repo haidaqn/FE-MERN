@@ -2,23 +2,26 @@ import React, { useEffect, useState } from 'react';
 import { apiProducts } from '../../../AxiosClient/apiProducts';
 import { Breadcrumbs, Layout, Pagination } from '../../../Components';
 import PageItem from './PageItem';
+import { useNavigate, useSearchParams, createSearchParams } from 'react-router-dom';
 
 const Products = () => {
     const [data, setData] = useState(null);
-    const fetchData = async () => {
-        const response = await apiProducts();
-        if (response?.success) setData(response);
-    };
-    const fetchDataCategory = async (queries) => {
+    const [params] = useSearchParams();
+    const fetchData = async (queries) => {
         const response = await apiProducts(queries);
         if (response?.success) {
-            setProductCategories(response?.products);
+            setData(response);
         }
     };
 
     useEffect(() => {
-        fetchData();
-    }, []);
+        let param = [];
+        for (let i of params.entries()) param.push(i);
+        let queries = {};
+        for (let item of params) queries[item[0]] = item[1];
+        fetchData({ ...queries });
+        window.scrollTo(0, 0);
+    }, [params]);
 
     return (
         <>
@@ -36,7 +39,7 @@ const Products = () => {
                 </div>
             )}
             <div className="my-4 flex items-center justify-center">
-                <Pagination totalCount={data?.count} />
+                <Pagination totalCount={data?.count} isCategory={false} paramName="products" />
             </div>
         </>
     );
