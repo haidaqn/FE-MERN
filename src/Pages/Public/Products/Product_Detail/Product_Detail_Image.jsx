@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import ReactImageMagnify from 'react-image-magnify';
 
 const Product_Detail_Image = ({ thumb, images }) => {
     const [image, setImage] = useState(null);

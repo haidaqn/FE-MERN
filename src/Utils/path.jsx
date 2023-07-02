@@ -14,10 +14,18 @@ const path = {
     RESET_PASSWORD: 'reset-password',
     CHANGE_PASSWORD: 'reset-password/:token',
     CATEGORY_PRODUCT: '/:category',
-    WISH_LIST: 'wishlist',
-    CART_ITEMS: 'cart-items',
+    CART: 'cart',
+    WISH_LIST: 'wish-list',
+    // admin
     ADMIN: 'admin',
-    HOME_ADMIN: 'admin/home'
+    DASHBOARD: 'dashboard',
+    MANAGE_USER: 'manage-user',
+    MANAGE_PRODUCTS: 'manage-products',
+    MANAGE_ORDER: 'manage-order',
+    CREATE_PRODUCTS: 'create-products',
+    // user
+    MEMBER: 'member',
+    PERSONAL: 'personal'
 };
 
 export default path;

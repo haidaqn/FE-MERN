@@ -17,10 +17,13 @@ import {
     ChangePw,
     ResetPw,
     Product_Detail,
-    Category
+    Category,
+    Cart,
+    WishList,
+    MemberLayout
 } from './Pages';
 import { Modal } from './Components';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 //
@@ -61,7 +64,10 @@ const App = () => {
                     <Route path={path.FAQ} element={<FAQ />} />
                     <Route path={path.BLOGS} element={<Blog />} />
                     <Route path={path.OUR_SERVICES} element={<Out_Service />} />
+                    <Route path={path.CART} element={<Cart />} />
+                    <Route path={path.WISH_LIST} element={<WishList />} />
                 </Route>
+                <Route path={path.MEMBER} element={<MemberLayout />} />
             </Routes>
             {showScrollButton && (
                 <a

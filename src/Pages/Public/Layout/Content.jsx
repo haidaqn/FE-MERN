@@ -2,6 +2,7 @@ import React from 'react';
 import icons from '../../../Utils/icons';
 import logo from '../../../assets/logo.png';
 import { Link } from 'react-router-dom';
+import path from '../../../Utils/path';
 
 const { AiOutlineMail, AiOutlineHeart, BsFillTelephoneFill, BsFillBagFill } = icons;
 
@@ -31,8 +32,12 @@ const Content = () => {
                     <div className="">Online Support 24/7</div>
                 </div>
                 <div className="col-span-1 space-x-16 justify-end flex items-center">
-                    <AiOutlineHeart color="red" size={35} />
-                    <BsFillBagFill size={35} color="red" />
+                    <Link to={`/${path.CART}`}>
+                        <AiOutlineHeart color="red" size={35} className="cursor-pointer  hover:opacity-70" />
+                    </Link>
+                    <Link to={`/${path.WISH_LIST}`}>
+                        <BsFillBagFill size={35} color="red" className="cursor-pointer hover:opacity-70" />
+                    </Link>
                 </div>
             </div>
         </div>

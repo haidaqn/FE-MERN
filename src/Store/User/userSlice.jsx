@@ -6,7 +6,8 @@ export const userSlice = createSlice({
     initialState: {
         isLogin: false,
         current: null,
-        token: null
+        token: null,
+        isLoading: false
     },
     reducers: {
         login: (state, action) => {
@@ -19,6 +20,22 @@ export const userSlice = createSlice({
                 (state.current = action.payload.userData),
                 (state.token = action.payload.token);
         }
+    },
+    extraReducers: (builder) => {
+        builder.addCase(Actions.getCurrent.pending, (state) => {
+            state.isLoading = true;
+        });
+        builder.addCase(Actions.getCurrent.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isLogin = true;
+            state.current = action.payload.userData;
+        });
+        builder.addCase(Actions.getCurrent.rejected, (state, action) => {
+            state.current = null;
+            state.isLoading = false;
+            state.token = null;
+            state.isLogin = false;
+        });
     }
 });
 

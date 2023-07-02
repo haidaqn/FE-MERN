@@ -3,12 +3,13 @@ import { Layout } from '../../../Components';
 import icons from '../../../Utils/icons';
 import Content from './Content';
 import Navbar from './Navbar';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../../Store/User/userSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { apiLogout } from '../../../AxiosClient/apiUser';
 
 const { GrFacebookOption, GrTwitter, GrInstagram, GrPinterest } = icons;
 
@@ -36,11 +37,14 @@ const Header = () => {
                                     </span>
                                     {hover && (
                                         <div className="absolute top-5 w-full bg-black flex flex-col z-50 text-white">
-                                            <span className="py-1 px-2 cursor-pointer border">Profile</span>
+                                            <NavLink to="/member" className="py-1 px-2 cursor-pointer border">
+                                                <span>Profile</span>
+                                            </NavLink>
                                             <span
                                                 className="py-1 px-2 cursor-pointer border"
-                                                onClick={() => {
+                                                onClick={async () => {
                                                     success();
+                                                    await apiLogout();
                                                     dispatch(logout({ isLogin: false, token: null, userData: null }));
                                                 }}
                                             >
