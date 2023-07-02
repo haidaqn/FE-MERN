@@ -5,7 +5,7 @@ import './index.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Provider } from 'react-redux';
-import { store, persistor } from './store/redux';
+import { store, persistor } from './Store/redux';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 //
