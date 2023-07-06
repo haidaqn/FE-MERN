@@ -5,8 +5,8 @@ const Product_Detail_Image = ({ thumb, images }) => {
     return (
         <>
             <div className="w-full">
-                <div className="max-w-[480px] max-h-[480px] object-contain overflow-hidden border p-12 ">
-                    <img src={image || thumb} alt="" />
+                <div className="object-contain overflow-hidden border p-12 ">
+                    <img src={image || thumb} alt="logo" className="w-[480px] h-[480px] object-cover" />
                 </div>
             </div>
             <div className="flex gap-6 mt-3">

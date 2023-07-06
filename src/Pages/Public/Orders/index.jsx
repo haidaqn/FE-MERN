@@ -33,9 +33,19 @@ const Orders = () => {
                     </div>
                 ) : (
                     <>
-                        {data?.map((Order, index) => (
-                            <OrderList key={Order?._id} Order={Order} index={index} />
-                        ))}
+                        {data?.length > 0 ? (
+                            <>
+                                {data?.map((Order, index) => (
+                                    <OrderList key={Order?._id} Order={Order} index={index} />
+                                ))}
+                            </>
+                        ) : (
+                            <>
+                                <div className="flex justify-center items-center text-2xl h-96">
+                                    <span>Bạn chưa có đơn hàng nào!</span>
+                                </div>
+                            </>
+                        )}
                     </>
                 )}
             </div>

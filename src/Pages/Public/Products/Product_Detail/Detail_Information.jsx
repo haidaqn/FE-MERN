@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { handlePrice, renderStartNumber } from '../../../../Utils/commonF';
 import { Description } from '../../../../Components';
 import { useSelector } from 'react-redux';
@@ -25,6 +25,10 @@ const Detail_Information = ({ data, quantity, setQuantity }) => {
         else toast.error('Thêm không thành công !');
     };
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     //
 
     return (
@@ -35,7 +39,7 @@ const Detail_Information = ({ data, quantity, setQuantity }) => {
                     <span className="flex h-4 justify-center items-center">
                         {renderStartNumber(Math.round(data?.totalRatings), 22)}
                     </span>
-                    <span className="flex justify-center items-center text-lg text-main">
+                    <span className="flex justify-center items-center text-sm text-main">
                         ( Sold: {data?.sold}, In Stock : {data?.quantity})
                     </span>
                 </span>

@@ -24,7 +24,7 @@ const ProductItem = ({ product, uhv }) => {
         <div
             onMouseEnter={(e) => setHover(true)}
             onMouseLeave={(e) => setHover(false)}
-            className={`${!uhv ? 'flex-col flex-1 mx-3' : 'py-4'} flex justify-center border relative`}
+            className={`${!uhv ? 'flex-col flex-1 mx-5 gap-5 ' : 'py-4 '} flex  justify-center border relative m-auto`}
         >
             {hover && !uhv && (
                 <div className="absolute bottom-[63px] left-0 right-0 flex justify-center items-center gap-4 animate-slide-top">

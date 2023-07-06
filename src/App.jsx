@@ -47,6 +47,7 @@ const App = () => {
     const dispatch = useDispatch();
     const { isShowModal, modalChildren } = useSelector((state) => state.app);
     useEffect(() => {
+        window.scrollTo(0, 0);
         dispatch(getCategories());
     }, []);
     return (
