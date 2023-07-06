@@ -8,6 +8,9 @@ export { default as InputSelected } from './InputFields/InputSelected';
 export { default as Pagination } from './Pagination/index';
 
 //
+export { default as Loading } from './Common/Loading';
+
+//
 
 export { default as Modal } from './Modal/Modal';
 

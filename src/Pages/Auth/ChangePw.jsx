@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useParams, useNavigate } from 'react-router-dom';
 import { apiResetPassWord } from '../../AxiosClient/apiUser';
-import path from '../../Utils/path';
 import Swal from 'sweetalert2';
+import { Loading } from '../../Components';
 
 const ChangePw = () => {
     const navigate = useNavigate();
     const { token } = useParams();
+    const [isLoading, setIsLoading] = useState(false);
     const initialValues = {
         newPassword: '',
         confirmNewPassword: ''
@@ -25,10 +26,13 @@ const ChangePw = () => {
         // Gọi API cập nhật mật khẩu ở đây
         const data = { password: values?.confirmNewPassword, token: token };
         const response = await apiResetPassWord(data);
+        setIsLoading(true);
         if (response?.success) {
+            setIsLoading(false);
             Swal.fire('', 'Change Password Success !', 'success');
             navigate(`/`);
         } else {
+            setIsLoading(false);
             Swal.fire('', 'Change Password Fail !', 'error');
         }
         setSubmitting(false);
@@ -79,6 +83,11 @@ const ChangePw = () => {
                     )}
                 </Formik>
             </div>
+            {isLoading && (
+                <div className="absolute top-0 right-0 left-0 bottom-0 flex justify-center items-center my-10">
+                    <Loading />
+                </div>
+            )}
         </div>
     );
 };

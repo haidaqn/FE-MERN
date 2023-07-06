@@ -1,17 +1,19 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { apiGetAllWishlist, apiDeleteWishList } from '../../../AxiosClient/apiWishList';
 import { useSelector } from 'react-redux';
-import { Breadcrumbs, Layout } from '../../../Components';
+import { Breadcrumbs, Layout, Loading } from '../../../Components';
 import ItemWishlist from './ItemWishlist';
 import { toast } from 'react-toastify';
 
 const WishList = () => {
     const { token } = useSelector((state) => state.user);
     const [wishlists, setWishlists] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     const fetchData = useCallback(async () => {
         const response = await apiGetAllWishlist(token);
         if (response?.success) setWishlists(response?.wishlist);
+        setIsLoading(false);
     }, [token]);
 
     const handleDeleteWishlist = useCallback(
@@ -37,21 +39,31 @@ const WishList = () => {
                     <Breadcrumbs category="Wishlists" />
                 </Layout>
             </div>
-            {wishlists?.length ? (
-                <div className="mb-10">
-                    <div className="flex flex-col gap-5">
-                        {wishlists?.map((wishlist) => (
-                            <ItemWishlist
-                                key={wishlist?._id}
-                                wishlist={wishlist}
-                                handleDeleteWishlist={handleDeleteWishlist}
-                                token={token}
-                            />
-                        ))}
-                    </div>
+            {isLoading ? (
+                <div className="flex justify-center items-center my-10">
+                    <Loading />
                 </div>
             ) : (
-                <div className="text-xl flex justify-center items-center my-5">Chưa có sản phẩm nào ở Wishlists !</div>
+                <>
+                    {wishlists?.length ? (
+                        <div className="mb-10">
+                            <div className="flex flex-col gap-5">
+                                {wishlists?.map((wishlist) => (
+                                    <ItemWishlist
+                                        key={wishlist?._id}
+                                        wishlist={wishlist}
+                                        handleDeleteWishlist={handleDeleteWishlist}
+                                        token={token}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="text-xl flex justify-center items-center my-5">
+                            Chưa có sản phẩm nào ở Wishlists !
+                        </div>
+                    )}
+                </>
             )}
             <div className="h-[300px]"></div>
         </>

@@ -20,11 +20,10 @@ export const apiDeleteCart = (data, token) =>
         }
     });
 
-export const apiGetAllCart = (token) =>
-    axios({
-        url: '/user/cart/getAll',
-        method: 'get',
+export const apiGetAll = (token) => {
+    return axios.get('/user/cart/getAll', {
         headers: {
             'access-token': token
         }
     });
+};

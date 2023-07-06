@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Layout } from '../../Components';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { apiForgotPassword } from '../../AxiosClient/apiUser';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import { Loading } from '../../Components';
 
 const ResetPw = () => {
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(false);
     const initialValues = {
         email: ''
     };
@@ -16,9 +18,11 @@ const ResetPw = () => {
     });
     const handleSubmit = async (values, { setSubmitting }) => {
         // console.log(values);
+        setIsLoading(true);
         const response = await apiForgotPassword(values);
         // console.log(response);
         if (response?.success) {
+            setIsLoading(false);
             Swal.fire('', 'Vui lòng kiểm tra email', 'success');
             navigate('/');
         }
@@ -57,6 +61,11 @@ const ResetPw = () => {
                     )}
                 </Formik>
             </Layout>
+            {isLoading && (
+                <div className="absolute top-0 right-0 left-0 bottom-0 flex justify-center items-center my-10">
+                    <Loading />
+                </div>
+            )}
         </div>
     );
 };

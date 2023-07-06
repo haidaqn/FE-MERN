@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { apiProducts } from '../../../AxiosClient/apiProducts';
-import { Breadcrumbs, Layout, Pagination } from '../../../Components';
+import { Breadcrumbs, Layout, Pagination, Loading } from '../../../Components';
 import PageItem from './PageItem';
-import { useNavigate, useSearchParams, createSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 const Products = () => {
     const [data, setData] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
     const [params] = useSearchParams();
     const fetchData = async (queries) => {
         const response = await apiProducts(queries);
         if (response?.success) {
             setData(response);
+            setIsLoading(false);
         }
     };
 
@@ -31,16 +33,18 @@ const Products = () => {
                     <Breadcrumbs category="Products" />
                 </Layout>
             </div>
-            {data?.count > 0 ? (
-                <PageItem products={data?.products} />
-            ) : (
-                <div className="my-3 h-[200px] flex justify-center items-center">
-                    <h1 className="text-2xl font-semibold ">Không có sản phẩm nào !</h1>
+            {isLoading ? (
+                <div className="flex justify-center items-center my-10">
+                    <Loading />
                 </div>
+            ) : (
+                <>
+                    {data?.count > 0 && <PageItem products={data?.products} />}
+                    <div className="my-4 flex items-center justify-center">
+                        <Pagination totalCount={data?.count} isCategory={false} paramName="products" />
+                    </div>
+                </>
             )}
-            <div className="my-4 flex items-center justify-center">
-                <Pagination totalCount={data?.count} isCategory={false} paramName="products" />
-            </div>
         </>
     );
 };

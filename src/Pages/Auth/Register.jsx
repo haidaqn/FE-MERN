@@ -5,6 +5,7 @@ import { NavLink, Link } from 'react-router-dom';
 import { apiRegister } from '../../AxiosClient/apiUser';
 import Swal from 'sweetalert2';
 import { AiFillHome } from 'react-icons/ai';
+import { Loading } from '../../Components';
 
 const Register = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -27,9 +28,11 @@ const Register = () => {
         setIsLoading(true);
         const response = await apiRegister(values);
         if (response?.success) {
+            setIsLoading(false);
             Swal.fire('', 'Check mail để hoàn tất đăng ký', 'question');
             navigate('/');
         } else {
+            setIsLoading(false);
             Swal.fire('', 'REGISTER FAIL', 'error');
         }
         setSubmitting(false);
@@ -125,6 +128,11 @@ const Register = () => {
                     <span className="text-main opacity-80 capitalize ">đăng nhập?</span>
                 </NavLink>
             </div>
+            {isLoading && (
+                <div className="absolute top-0 right-0 left-0 bottom-0 flex justify-center items-center my-10">
+                    <Loading />
+                </div>
+            )}
         </div>
     );
 };

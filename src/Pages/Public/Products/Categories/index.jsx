@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useParams, useSearchParams, useNavigate, createSearchParams } from 'react-router-dom';
-import { Breadcrumbs, Layout, SearchItem, InputSelected, Pagination } from '../../../../Components';
+import { Breadcrumbs, Layout, SearchItem, InputSelected, Pagination, Loading } from '../../../../Components';
 import { apiProducts } from '../../../../AxiosClient/apiProducts';
 import { colors, sortBy } from '../../../../Utils/Contants';
 import PageItem from '../PageItem';
@@ -9,6 +9,7 @@ import PageItem from '../PageItem';
 
 const Category = () => {
     const { category } = useParams();
+    const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();
     const [productCategories, setProductCategories] = useState(null);
     const [activeClick, setActiveClick] = useState(null);
@@ -17,6 +18,7 @@ const Category = () => {
     const fetchDataCategory = async (queries) => {
         const response = await apiProducts(queries);
         if (response?.success) {
+            setIsLoading(false);
             setProductCategories(response);
         }
     };
@@ -102,16 +104,24 @@ const Category = () => {
                     </div>
                 </div>
             </div>
-            {productCategories?.count > 0 ? (
-                <PageItem products={productCategories?.products} />
-            ) : (
-                <div className="my-3 h-[200px] flex justify-center items-center">
-                    <h1 className="text-2xl font-semibold ">Không có sản phẩm nào !</h1>
+            {isLoading ? (
+                <div className="flex justify-center items-center my-10">
+                    <Loading />
                 </div>
+            ) : (
+                <>
+                    {productCategories?.count > 0 ? (
+                        <PageItem products={productCategories?.products} />
+                    ) : (
+                        <div className="my-3 h-[200px] flex justify-center items-center">
+                            <h1 className="text-2xl font-semibold ">Không có sản phẩm nào !</h1>
+                        </div>
+                    )}
+                    <div className="flex items-center justify-center my-4">
+                        <Pagination totalCount={productCategories?.count} isCategory={true} paramName="category" />
+                    </div>
+                </>
             )}
-            <div className="flex items-center justify-center my-4">
-                <Pagination totalCount={productCategories?.count} isCategory={true} paramName="category" />
-            </div>
         </>
     );
 };
