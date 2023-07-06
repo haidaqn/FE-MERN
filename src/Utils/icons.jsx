@@ -15,7 +15,8 @@ import {
     AiOutlineCaretDown,
     AiFillGift,
     AiOutlinePrinter,
-    AiFillTablet
+    AiFillTablet,
+    AiOutlineShoppingCart
 } from 'react-icons/ai';
 import {
     BsFillTelephoneFill,
@@ -72,7 +73,8 @@ const icons = {
     GrFormPrevious,
     GrFormNext,
     FiX,
-    GiSmartphone
+    GiSmartphone,
+    AiOutlineShoppingCart
 };
 
 export default icons;

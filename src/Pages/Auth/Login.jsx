@@ -25,10 +25,12 @@ const Login = () => {
 
     const handleSubmit = async (values, { setSubmitting }) => {
         const response = await apiLogin(values);
+        console.log(response);
         if (response?.success) {
             Swal.fire('', 'LOGIN Successfully', 'success');
             dispatch(login({ isLogin: true, token: response?.accessToken, userData: response?.userData }));
-            navigate('/');
+            if (+response?.userData?.role !== 2003) navigate('/');
+            else navigate('/admin');
         } else {
             Swal.fire('', 'LOGIN FAIL', 'error');
         }

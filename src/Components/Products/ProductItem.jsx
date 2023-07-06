@@ -4,10 +4,22 @@ import icons from '../../Utils/icons';
 import TitleProduct from './Product/TitleProduct';
 import ImageProduct from './Product/ImageProduct';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { apiAddToWishList } from '../../AxiosClient/apiWishList';
+import { useSelector } from 'react-redux';
 
 const ProductItem = ({ product, uhv }) => {
+    const link = `/${product.category?.toLowerCase()}/${product._id}/${product.title}`;
     const [hover, setHover] = useState(false);
     const { AiFillHeart, AiOutlineMenu, BsFillEyeFill } = icons;
+    const { token } = useSelector((state) => state.user);
+    const handleAddToWishList = async () => {
+        const data = { pid: product._id };
+        const response = await apiAddToWishList(data, token);
+        if (response?.success) toast.success(`Thêm thành công ${product.title} vào wishlist!`)();
+        else toast.error(`Thêm không thành công ${product.title} vào wishlist!`)();
+    };
+
     return (
         <div
             onMouseEnter={(e) => setHover(true)}
@@ -16,9 +28,15 @@ const ProductItem = ({ product, uhv }) => {
         >
             {hover && !uhv && (
                 <div className="absolute bottom-[63px] left-0 right-0 flex justify-center items-center gap-4 animate-slide-top">
-                    <HoverIcon icon={<AiFillHeart size={20} />} />
-                    <HoverIcon icon={<AiOutlineMenu size={20} />} />
-                    <HoverIcon icon={<BsFillEyeFill size={20} />} />
+                    <span onClick={() => handleAddToWishList()}>
+                        <HoverIcon icon={<AiFillHeart size={20} />} />
+                    </span>
+                    <Link to={`/${product.category?.toLowerCase()}/${product._id}/${product.title}`}>
+                        <HoverIcon icon={<AiOutlineMenu size={20} link={link} />} />
+                    </Link>
+                    <Link to={`/${product.category?.toLowerCase()}/${product._id}/${product.title}`}>
+                        <HoverIcon icon={<BsFillEyeFill size={20} link={link} />} />
+                    </Link>
                 </div>
             )}
             <Link to={`/${product.category?.toLowerCase()}/${product._id}/${product.title}`}>

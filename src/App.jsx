@@ -20,7 +20,9 @@ import {
     Category,
     Cart,
     WishList,
-    MemberLayout
+    MemberLayout,
+    Orders,
+    Admin
 } from './Pages';
 import { Modal } from './Components';
 import { ToastContainer } from 'react-toastify';
@@ -52,6 +54,7 @@ const App = () => {
             {isShowModal && <Modal>{modalChildren}</Modal>}
             <Routes>
                 <Route path={path.LOGIN} element={<Login />}></Route>
+                <Route path={path.ADMIN} element={<Admin />}></Route>
                 <Route path={path.REGISTER} element={<Register />} />
                 <Route path={path.PUBLIC} element={<Public />}>
                     <Route path={path.FINAL_REGISTER} element={<FinalRegister />} />
@@ -66,6 +69,7 @@ const App = () => {
                     <Route path={path.OUR_SERVICES} element={<Out_Service />} />
                     <Route path={path.CART} element={<Cart />} />
                     <Route path={path.WISH_LIST} element={<WishList />} />
+                    <Route path={path.ORDERS} element={<Orders />} />
                 </Route>
                 <Route path={path.MEMBER} element={<MemberLayout />} />
             </Routes>

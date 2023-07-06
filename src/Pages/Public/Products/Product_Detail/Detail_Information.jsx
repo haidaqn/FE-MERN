@@ -1,8 +1,12 @@
 import React from 'react';
 import { handlePrice, renderStartNumber } from '../../../../Utils/commonF';
 import { Description } from '../../../../Components';
+import { useSelector } from 'react-redux';
+import { apiAddToCart } from '../../../../AxiosClient/apiAddCart';
+import { toast } from 'react-toastify';
 
 const Detail_Information = ({ data, quantity, setQuantity }) => {
+    const { token } = useSelector((state) => state.user);
     const increment = () => {
         if (quantity < data?.quantity) {
             setQuantity((prev) => +prev + 1);
@@ -13,6 +17,12 @@ const Detail_Information = ({ data, quantity, setQuantity }) => {
         if (quantity > 0) {
             setQuantity((prev) => +prev - 1);
         }
+    };
+
+    const handleAddToCart = async (data) => {
+        const response = await apiAddToCart(data, token);
+        if (response?.success) toast.success('Thêm thành công !');
+        else toast.error('Thêm không thành công !');
     };
 
     //
@@ -58,7 +68,10 @@ const Detail_Information = ({ data, quantity, setQuantity }) => {
                     </button>
                 </div>
             </div>
-            <div className="w-full text-center my-3 hover:opacity-80">
+            <div
+                className="w-full text-center my-3 hover:opacity-80"
+                onClick={() => handleAddToCart({ pid: data?._id, quantity })}
+            >
                 <button className="p-4 bg-main w-[90%] rounded-md uppercase">add to cart</button>
             </div>
         </>

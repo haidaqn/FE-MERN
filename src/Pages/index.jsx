@@ -7,6 +7,7 @@ export { default as Category } from './Public/Products/Categories/index';
 export { default as Product_Detail } from './Public/Products/Product_Detail/index'; // memo
 export { default as Cart } from './Public/Cart/index';
 export { default as WishList } from './Public/WishList/index';
+export { default as Orders } from './Public/Orders/index';
 
 // auth
 
@@ -18,3 +19,7 @@ export { default as ResetPw } from './Auth/ResetPw';
 
 // user
 export { default as MemberLayout } from './Member/MemberLayout';
+
+// admin
+
+export { default as Admin } from './Admin/AdminLayout';

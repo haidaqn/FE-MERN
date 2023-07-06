@@ -6,6 +6,7 @@ import Product_Detail_Image from './Product_Detail_Image';
 import { Breadcrumbs } from '../../../../Components';
 import { Layout, ProductInformation } from '../../../../Components';
 import Detail_Information from './Detail_Information';
+import { apiAddToCart } from '../../../../AxiosClient/apiAddCart';
 
 const Product_Detail = () => {
     const { pid, category, title } = useParams();
@@ -16,8 +17,6 @@ const Product_Detail = () => {
         const response = await apiProduct(pid);
         if (response?.success) setData(response?.product);
     };
-
-    const handleAddToCart = useCallback(async () => {}, []);
 
     useEffect(() => {
         fetchData();

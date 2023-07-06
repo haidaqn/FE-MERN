@@ -16,6 +16,7 @@ const path = {
     CATEGORY_PRODUCT: '/:category',
     CART: 'cart',
     WISH_LIST: 'wish-list',
+    ORDERS: 'orders',
     // admin
     ADMIN: 'admin',
     DASHBOARD: 'dashboard',

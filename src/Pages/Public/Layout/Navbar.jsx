@@ -23,7 +23,14 @@ const Navbar = () => {
                     </NavLink>
                 ))}
             </div>
-            <input type="text" className="outline-none " placeholder="Search Something" />
+            <input
+                type="text"
+                className="outline-none "
+                placeholder="Search Something"
+                onClick={() => {
+                    alert('Tính năng đang phát triển !');
+                }}
+            />
         </div>
     );
 };

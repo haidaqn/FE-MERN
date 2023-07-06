@@ -37,19 +37,28 @@ export const apiAddToCart = (data, token) =>
     axios({
         url: '/user/cart',
         method: 'put',
-        data
+        data,
+        headers: {
+            'access-token': token
+        }
     });
 
 export const apiDeleteCart = (data, token) =>
     axios({
-        url: '/user/delete',
+        url: '/user/cart/delete',
         method: 'put',
-        data
+        data,
+        headers: {
+            'access-token': token
+        }
     });
 
 export const apiGetCurrent = (data, token) =>
     axios({
         url: '/user/current',
         method: 'get',
-        data
+        data,
+        headers: {
+            'access-token': token
+        }
     });
