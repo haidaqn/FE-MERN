@@ -22,4 +22,9 @@ export { default as MemberLayout } from './Member/MemberLayout';
 
 // admin
 
-export { default as Admin } from './Admin/AdminLayout';
+export { default as AdminLayout } from './Admin/AdminLayout';
+export { default as Dashboard } from './Admin/Layout/Dashboard';
+export { default as Create_Product } from './Admin/Layout/Manage_User/Create_Product';
+export { default as Manage_Product } from './Admin/Layout/Manage_User/Manage_Product';
+export { default as Manage_Order } from './Admin/Layout/Manage_Order';
+export { default as Manage_User } from './Admin/Layout/Manage_User';

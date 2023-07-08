@@ -16,6 +16,7 @@ const Category = () => {
     const [sort, setSort] = useState(null);
     const [params] = useSearchParams();
     const fetchDataCategory = async (queries) => {
+        setIsLoading(true);
         const response = await apiProducts(queries);
         if (response?.success) {
             setIsLoading(false);
@@ -35,7 +36,6 @@ const Category = () => {
         }
         if (queries?.from) queries.price = { gte: queries.from };
         if (queries?.to) queries.price = { lte: queries.to };
-        queries.page = 1;
         delete queries.from;
         delete queries.to;
         const q = { category, ...priceQuery, ...queries };
@@ -118,7 +118,7 @@ const Category = () => {
                         </div>
                     )}
                     <div className="flex items-center justify-center my-4">
-                        <Pagination totalCount={productCategories?.count} isCategory={true} paramName="category" />
+                        <Pagination totalCount={productCategories?.count} />
                     </div>
                 </>
             )}

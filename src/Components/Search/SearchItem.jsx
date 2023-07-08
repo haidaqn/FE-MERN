@@ -1,6 +1,6 @@
 import React, { memo, useState, useEffect } from 'react';
 import icons from '../../Utils/icons';
-import { useNavigate, createSearchParams, useParams, useSearchParams } from 'react-router-dom';
+import { useNavigate, createSearchParams, useSearchParams, useLocation } from 'react-router-dom';
 import { apiProducts } from '../../AxiosClient/apiProducts';
 import { handlePrice } from '../../Utils/commonF';
 import useDebounce from '../../hooks/useDebounce';
@@ -10,8 +10,8 @@ const { AiOutlineDown } = icons;
 const SearchItem = ({ name, js, activeClick, handleChangeFilter, type, elementSelect }) => {
     const [selected, setSelected] = useState([]);
     const [bestPrice, setBestPrice] = useState(0);
+    const location = useLocation();
     const [price, setPrice] = useState({ from: '', to: '' });
-    const { category } = useParams();
     const [params] = useSearchParams();
     const navigate = useNavigate();
     const handleSelect = (item) => {
@@ -34,10 +34,10 @@ const SearchItem = ({ name, js, activeClick, handleChangeFilter, type, elementSe
             for (let i of param) queries[i[0]] = i[1];
             queries.color = selected.join(',');
             navigate({
-                pathname: `/${category}`,
+                pathname: location.pathname,
                 search: createSearchParams(queries).toString()
             });
-        } else navigate(`/${category}`);
+        } else navigate(location.pathname);
     }, [selected]);
 
     useEffect(() => {
@@ -52,7 +52,7 @@ const SearchItem = ({ name, js, activeClick, handleChangeFilter, type, elementSe
         if (+price?.from > 0) data.from = Number(price.from);
         if (+price?.to > 0) data.to = Number(price.to);
         navigate({
-            pathname: `/${category}`,
+            pathname: location.pathname,
             search: createSearchParams(data).toString()
         });
     }, [debouncePriceFrom, debouncePriceTo]);

@@ -1,11 +1,11 @@
 import React from 'react';
 import clsx from 'clsx';
-import { useSearchParams, useParams, useNavigate, createSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate, createSearchParams, useLocation } from 'react-router-dom';
 
-const PaginationItem = ({ isCategory, paramName, children }) => {
+const PaginationItem = ({ children }) => {
     const [params] = useSearchParams();
-    const { [paramName]: paramValue } = useParams();
     const navigate = useNavigate();
+    const location = useLocation();
 
     const handlePagination = () => {
         let param = [];
@@ -14,7 +14,7 @@ const PaginationItem = ({ isCategory, paramName, children }) => {
         for (let i of param) queries[i[0]] = i[1];
         if (Number(children)) queries.page = children;
         navigate({
-            pathname: `/${isCategory ? paramValue : paramName}`,
+            pathname: location.pathname,
             search: createSearchParams(queries).toString()
         });
     };
@@ -28,7 +28,7 @@ const PaginationItem = ({ isCategory, paramName, children }) => {
             )}
             type="button"
             disabled={!Number(children)}
-            onClick={handlePagination}
+            onClick={() => handlePagination()}
         >
             {children}
         </button>

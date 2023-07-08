@@ -1,22 +1,15 @@
 import React from 'react';
+import { AiOutlineSearch } from 'react-icons/ai';
 
-const InputField = ({ type, setValue, nameKey, value, invalidFields, setInvalidFields }) => {
+const InputField = ({ type, setValue, nameKey, value, invalidFields, setInvalidFields, w, placeholder }) => {
     return (
-        <div className="w-full relative mt-3">
-            {value.trim() !== '' && (
-                <label
-                    className="animate-slide-top-sm text-[13px] absolute top-[-8px] left-[7px] blog bg-white px-1 text-main font-medium"
-                    htmlFor={nameKey}
-                >
-                    {nameKey?.slice(0, 1)?.toUpperCase() + nameKey?.slice(1)}
-                </label>
-            )}
+        <div className={`${w ? 'w-[300px]' : 'w-full mt-3'} relative`}>
             <input
                 type={type || 'text'}
                 className="px-4 pb-3 pt-3 rounded-sm border mb-1 w-full text-sm font-light outline-none"
-                placeholder={nameKey?.slice(0, 1)?.toUpperCase() + nameKey?.slice(1)}
+                placeholder={placeholder}
                 value={value}
-                onChange={(e) => setValue((prev) => ({ ...prev, [nameKey]: e.target.value }))}
+                onChange={(e) => setValue(e.target.value, nameKey)}
             />
         </div>
     );

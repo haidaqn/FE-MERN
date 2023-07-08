@@ -9,6 +9,7 @@ const Products = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [params] = useSearchParams();
     const fetchData = async (queries) => {
+        setIsLoading(true);
         const response = await apiProducts(queries);
         if (response?.success) {
             setData(response);
@@ -41,7 +42,7 @@ const Products = () => {
                 <>
                     {data?.count > 0 && <PageItem products={data?.products} />}
                     <div className="my-4 flex items-center justify-center">
-                        <Pagination totalCount={data?.count} isCategory={false} paramName="products" />
+                        <Pagination totalCount={data?.count} />
                     </div>
                 </>
             )}

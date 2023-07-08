@@ -2,9 +2,9 @@ import { useMemo } from 'react';
 import { generateRange } from '../Utils/commonF';
 import { BiDotsHorizontalRounded } from 'react-icons/bi';
 
-const usePagination = (totalCountProducts, currentPage, siblingCount = 1) => {
+const usePagination = (totalCountProducts, currentPage, siblingCount = 1, limit = 8) => {
     const paginationArray = useMemo(() => {
-        const pageSize = 10;
+        const pageSize = limit;
         const paginationCount = Math.ceil(totalCountProducts / pageSize);
         const totalPaginationItem = siblingCount + 5;
         if (paginationCount <= totalPaginationItem) return generateRange(1, paginationCount);

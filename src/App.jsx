@@ -22,7 +22,12 @@ import {
     WishList,
     MemberLayout,
     Orders,
-    Admin
+    AdminLayout,
+    Dashboard,
+    Create_Product,
+    Manage_Product,
+    Manage_Order,
+    Manage_User
 } from './Pages';
 import { Modal } from './Components';
 import { ToastContainer } from 'react-toastify';
@@ -55,7 +60,13 @@ const App = () => {
             {isShowModal && <Modal>{modalChildren}</Modal>}
             <Routes>
                 <Route path={path.LOGIN} element={<Login />}></Route>
-                <Route path={path.ADMIN} element={<Admin />}></Route>
+                <Route path={path.ADMIN} element={<AdminLayout />}>
+                    <Route path={path.DASHBOARD} element={<Dashboard />} />
+                    <Route path={path.MANAGE_USER} element={<Manage_User />} />
+                    <Route path={path.CREATE_PRODUCTS} element={<Create_Product />} />
+                    <Route path={path.MANAGE_PRODUCTS} element={<Manage_Product />} />
+                    <Route path={path.MANAGE_ORDER} element={<Manage_Order />} />
+                </Route>
                 <Route path={path.REGISTER} element={<Register />} />
                 <Route path={path.PUBLIC} element={<Public />}>
                     <Route path={path.FINAL_REGISTER} element={<FinalRegister />} />
@@ -71,8 +82,8 @@ const App = () => {
                     <Route path={path.CART} element={<Cart />} />
                     <Route path={path.WISH_LIST} element={<WishList />} />
                     <Route path={path.ORDERS} element={<Orders />} />
+                    <Route path={path.MEMBER} element={<MemberLayout />} />
                 </Route>
-                <Route path={path.MEMBER} element={<MemberLayout />} />
             </Routes>
             {showScrollButton && (
                 <a

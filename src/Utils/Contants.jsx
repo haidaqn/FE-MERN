@@ -1,7 +1,18 @@
 import path from './path';
 import icons from './icons';
 
-const { GiSmartphone, GiLaptop, AiOutlinePrinter, BsFillSpeakerFill, SlEarphones, AiFillTablet } = icons;
+const {
+    GiSmartphone,
+    MdGroups2,
+    GiLaptop,
+    AiOutlinePrinter,
+    BsFillSpeakerFill,
+    SlEarphones,
+    AiFillTablet,
+    AiOutlineDashboard,
+    GrProductHunt,
+    RiBillLine
+} = icons;
 //
 export const navigation = [
     {
@@ -159,4 +170,38 @@ export const options = [
     { id: 2, name: 'Neutral' },
     { id: 3, name: 'Good' },
     { id: 4, name: 'Perfect' }
+];
+
+export const adminSlideBar = [
+    {
+        id: 1,
+        type: 'SINGLE',
+        text: 'Dasboard',
+        path: `/${path.ADMIN}/${path.DASHBOARD}`,
+        icon: <AiOutlineDashboard size={30} />
+    },
+    {
+        id: 2,
+        type: 'SINGLE',
+        text: 'Manage User',
+        path: `/${path.ADMIN}/${path.MANAGE_USER}`,
+        icon: <MdGroups2 size={30} />
+    },
+    {
+        id: 3,
+        type: 'PARENT',
+        text: 'Manage product',
+        submenu: [
+            { text: 'create product', path: `/${path.ADMIN}/${path.CREATE_PRODUCTS}` },
+            { text: 'Manage product', path: `/${path.ADMIN}/${path.MANAGE_PRODUCTS}` }
+        ],
+        icon: <GrProductHunt size={30} />
+    },
+    {
+        id: 4,
+        type: 'SINGLE',
+        text: 'Manage order',
+        path: `/${path.ADMIN}/${path.MANAGE_ORDER}`,
+        icon: <RiBillLine size={30} />
+    }
 ];
