@@ -1,10 +1,11 @@
 import axios from '../axiosClient';
 
 // user
-export const apiUpdateByUserAdmin = (aid, token) =>
+export const apiUpdateByUserAdmin = (aid, data, token) =>
     axios({
         url: `/user/${aid}`,
         method: 'put',
+        data,
         headers: {
             'access-token': token
         }
@@ -20,9 +21,9 @@ export const apiGetUsers = (params, token) => {
     });
 };
 
-export const apiDeleteUser = (token) =>
+export const apiDeleteUser = (idUser, token) =>
     axios({
-        url: '/user',
+        url: `/user?_id=${idUser}`,
         method: 'delete',
         headers: {
             'access-token': token

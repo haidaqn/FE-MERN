@@ -71,9 +71,7 @@ const VoteOption = ({ nameProduct, pid, rerender }) => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                 ></textarea>
-                {formik.touched.message && formik.errors.message && (
-                    <span className="text-red-500">{formik.errors.message}</span>
-                )}
+                {formik.touched.message && formik.errors.message && <span className="text-red-500">{formik.errors.message}</span>}
                 <div className="flex gap-5 mt-5">
                     {options?.map((option) => (
                         <div
@@ -88,14 +86,9 @@ const VoteOption = ({ nameProduct, pid, rerender }) => {
                         </div>
                     ))}
                 </div>
-                {formik.touched.selectedOption && formik.errors.selectedOption && (
-                    <span className="text-red-500">{formik.errors.selectedOption}</span>
-                )}
+                {formik.touched.selectedOption && formik.errors.selectedOption && <span className="text-red-500">{formik.errors.selectedOption}</span>}
             </form>
-            <button
-                className="bg-blue-500 text-white px-[40px] py-2 rounded-lg mt-5 w-2/3"
-                onClick={() => handleSubmit()}
-            >
+            <button className="bg-blue-500 text-white px-[40px] py-2 rounded-lg mt-5 w-2/3" onClick={() => handleSubmit()}>
                 Submit
             </button>
         </div>

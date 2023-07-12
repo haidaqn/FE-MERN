@@ -27,7 +27,8 @@ import {
     Create_Product,
     Manage_Product,
     Manage_Order,
-    Manage_User
+    Manage_User,
+    Edit_User
 } from './Pages';
 import { Modal } from './Components';
 import { ToastContainer } from 'react-toastify';
@@ -62,6 +63,7 @@ const App = () => {
                 <Route path={path.LOGIN} element={<Login />}></Route>
                 <Route path={path.ADMIN} element={<AdminLayout />}>
                     <Route path={path.DASHBOARD} element={<Dashboard />} />
+                    <Route path={path.EDIT_USER_BY_ADMIN} element={<Edit_User />} />
                     <Route path={path.MANAGE_USER} element={<Manage_User />} />
                     <Route path={path.CREATE_PRODUCTS} element={<Create_Product />} />
                     <Route path={path.MANAGE_PRODUCTS} element={<Manage_Product />} />
@@ -86,10 +88,7 @@ const App = () => {
                 </Route>
             </Routes>
             {showScrollButton && (
-                <a
-                    href="#"
-                    className="fixed flex justify-center items-center bottom-6 right-6 w-12 h-12 bg-main rounded-full"
-                >
+                <a href="#" className="fixed flex justify-center items-center bottom-6 right-6 w-12 h-12 bg-main rounded-full">
                     <AiFillCaretUp size={30} color="white" />
                 </a>
             )}

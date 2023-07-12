@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import SlideBar from './Home/SlideBar';
 import banner from '../../assets/shopping_banner.jpg';
 import Detail from './Home/Detail';

@@ -24,7 +24,8 @@ export { default as MemberLayout } from './Member/MemberLayout';
 
 export { default as AdminLayout } from './Admin/AdminLayout';
 export { default as Dashboard } from './Admin/Layout/Dashboard';
-export { default as Create_Product } from './Admin/Layout/Manage_User/Create_Product';
-export { default as Manage_Product } from './Admin/Layout/Manage_User/Manage_Product';
+export { default as Create_Product } from './Admin/Layout/Manage_Product/Create_Product';
+export { default as Manage_Product } from './Admin/Layout/Manage_Product/Manage_Product';
 export { default as Manage_Order } from './Admin/Layout/Manage_Order';
-export { default as Manage_User } from './Admin/Layout/Manage_User';
+export { default as Manage_User } from './Admin/Layout/Manage_User/Manage_User';
+export { default as Edit_User } from './Admin/Layout/Manage_User/Edit_User'; // memo

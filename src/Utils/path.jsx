@@ -26,7 +26,8 @@ const path = {
     CREATE_PRODUCTS: 'create-products',
     // user
     MEMBER: 'member',
-    PERSONAL: 'personal'
+    PERSONAL: 'personal',
+    EDIT_USER_BY_ADMIN: '/admin/manage-user/:uid'
 };
 
 export default path;
