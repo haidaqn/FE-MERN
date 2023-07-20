@@ -17,3 +17,12 @@ export const apiGetOrders = (token) =>
             'access-token': token
         }
     });
+
+export const apiGetOrdersAdmin = (token) =>
+    axios({
+        url: '/order/admin-orders',
+        method: 'get',
+        headers: {
+            'access-token': token
+        }
+    });

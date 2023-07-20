@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-    baseURL: 'https://apimern-6pax.onrender.com/api',
+    baseURL: 'http://localhost:3000/api',
     headers: {
         'Content-Type': 'application/json'
     }

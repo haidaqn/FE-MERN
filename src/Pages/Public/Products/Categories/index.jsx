@@ -18,10 +18,8 @@ const Category = () => {
     const fetchDataCategory = async (queries) => {
         setIsLoading(true);
         const response = await apiProducts(queries);
-        if (response?.success) {
-            setIsLoading(false);
-            setProductCategories(response);
-        }
+        if (response?.success) setProductCategories(response);
+        setIsLoading(false);
     };
 
     useEffect(() => {
@@ -38,7 +36,7 @@ const Category = () => {
         if (queries?.to) queries.price = { lte: queries.to };
         delete queries.from;
         delete queries.to;
-        const q = { category, ...priceQuery, ...queries };
+        const q = { category, ...priceQuery, ...queries, limit: 8 };
         fetchDataCategory(q);
         window.scrollTo(0, 0);
     }, [params]);
@@ -74,7 +72,7 @@ const Category = () => {
         <>
             <div className="bg-[#f7f7f7] pt-2 flex flex-col gap-3 pb-3 mx-[-14%]">
                 <Layout>
-                    <h1 className="font-bold text-xl">{category}</h1>
+                    <h1 className="font-bold text-xl cursor-pointer">{category}</h1>
                     <Breadcrumbs category={category} />
                 </Layout>
             </div>
@@ -82,19 +80,8 @@ const Category = () => {
                 <div className="flex-5 flex flex-col gap-2">
                     <span className="text-lg text-gray-500">Filter by</span>
                     <small className="flex-5 flex gap-4">
-                        <SearchItem
-                            name="Price"
-                            activeClick={activeClick}
-                            handleChangeFilter={handleChangeFilter}
-                            type="input"
-                        />
-                        <SearchItem
-                            name="Color"
-                            type="checkbox"
-                            elementSelect={colors}
-                            activeClick={activeClick}
-                            handleChangeFilter={handleChangeFilter}
-                        />
+                        <SearchItem name="Price" activeClick={activeClick} handleChangeFilter={handleChangeFilter} type="input" />
+                        <SearchItem name="Color" type="checkbox" elementSelect={colors} activeClick={activeClick} handleChangeFilter={handleChangeFilter} />
                     </small>
                 </div>
                 <div className="flex-2 flex  flex-col gap-2">

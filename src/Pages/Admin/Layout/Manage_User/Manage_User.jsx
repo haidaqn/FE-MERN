@@ -6,8 +6,8 @@ import 'moment-timezone';
 import { InputField, Loading } from '../../../../Components';
 import { useDebounce } from '../../../../hooks';
 import Swal from 'sweetalert2';
-import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { FaCircle } from 'react-icons/fa';
 
 //
 
@@ -16,20 +16,6 @@ const Manage_User = () => {
     const [data, setData] = useState(null);
     const [payload, setPayload] = useState({ name: '' });
     const [isLoading, setIsLoading] = useState(true);
-    const [edit, setEdit] = useState(null);
-
-    const {
-        handleSubmit,
-        register,
-        formState: { errors }
-    } = useForm({
-        email: '',
-        firstName: '',
-        lastName: '',
-        role: '',
-        mobile: '',
-        status: ''
-    });
 
     const fetchData = async (params) => {
         setIsLoading(true);
@@ -64,10 +50,6 @@ const Manage_User = () => {
         });
     };
 
-    const handleUpdate = (data) => {
-        console.log(data);
-    };
-
     useEffect(() => {
         const param = {};
         if (queries) {
@@ -91,7 +73,7 @@ const Manage_User = () => {
                         <div className="flex justify-end py-4">
                             <InputField w value={payload?.name} setValue={setValue} nameKey="name" placeholder="Tìm kiếm theo tên hoặc mail user..." />
                         </div>
-                        <form onSubmit={() => handleSubmit(handleUpdate)}>
+                        <form>
                             <table className="w-full border-collapse table-auto">
                                 <thead className="bg-gray-500 text-white text-lg uppercase">
                                     <tr>
@@ -125,8 +107,24 @@ const Manage_User = () => {
                                             <td className=" h-[80px] border py-2 px-3">
                                                 <span>{user.mobile}</span>
                                             </td>
-                                            <td className=" h-[80px] border py-2 px-3">
-                                                <span>{user.isBlocked ? 'Blocked' : 'Actived'}</span>
+                                            <td className=" border py-2 px-3 text-center flex justify-center items-center">
+                                                <div className="h-[80px] flex justify-center items-center gap-4">
+                                                    {user.isBlocked ? (
+                                                        <>
+                                                            <span>
+                                                                <FaCircle size={18} color="red" />
+                                                            </span>
+                                                            <span className="uppercase text-sm font-semibold">blocked</span>
+                                                        </>
+                                                    ) : (
+                                                        <>
+                                                            <span>
+                                                                <FaCircle size={18} color="green" />
+                                                            </span>
+                                                            <span className="uppercase text-sm font-semibold">actived</span>
+                                                        </>
+                                                    )}
+                                                </div>
                                             </td>
                                             <td className=" h-[80px] border py-2 px-3 ">{moment(user.createdAt).format('DD/MM/YYYY')}</td>
                                             <td className={`h-[80px] border py-2 px-3 flex gap-5 items-center justify-center text-main capitalize`}>

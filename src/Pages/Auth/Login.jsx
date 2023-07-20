@@ -30,10 +30,15 @@ const Login = () => {
         const response = await apiLogin(values);
         if (response?.success) {
             setIsLoading(false);
-            Swal.fire('', 'LOGIN Successfully', 'success');
-            dispatch(login({ isLogin: true, token: response?.accessToken, userData: response?.userData }));
-            if (+response?.userData?.role !== 2003) navigate('/');
-            else navigate('/admin');
+            if (!response?.userData?.isBlocked) {
+                Swal.fire('', 'LOGIN Successfully', 'success');
+                dispatch(login({ isLogin: true, token: response?.accessToken, userData: response?.userData }));
+                if (+response?.userData?.role === 1111) navigate('/');
+                else navigate('/admin');
+            } else {
+                setIsLoading(false);
+                Swal.fire('', 'Tài Khoản bạn đã bị khóa, hãy liên hệ với Admin để giải quyết!!', 'error');
+            }
         } else {
             setIsLoading(false);
             Swal.fire('', 'LOGIN FAIL', 'error');
@@ -59,11 +64,7 @@ const Login = () => {
                                 <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                                     Email
                                 </label>
-                                <Field
-                                    type="email"
-                                    name="email"
-                                    className="mt-1 p-3 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                />
+                                <Field type="email" name="email" className="mt-1 p-3 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
                                 <ErrorMessage name="email" component="div" className="text-red-500" />
                             </div>
                             <div className="mb-6">

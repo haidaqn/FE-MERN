@@ -19,13 +19,9 @@ const Breadcrumbs = ({ category, title }) => {
                     <NavLink
                         key={item.match.pathname}
                         to={item.match.pathname}
-                        className={`flex justify-center items-center gap-1  ${
-                            self.length - 1 !== index && 'hover:text-main cursor-pointer'
-                        }`}
+                        className={`flex justify-center items-center gap-1 cursor-pointer ${self.length - 1 !== index && 'hover:text-main cursor-pointer'}`}
                     >
-                        <span className={`${self.length - 1 === index && 'opacity-80'} capitalize`}>
-                            {item.breadcrumb}
-                        </span>
+                        <span className={`${self.length - 1 === index && 'opacity-80'} capitalize`}>{item.breadcrumb}</span>
                         {self.length - 1 !== index && (
                             <span>
                                 <IoIosArrowForward />

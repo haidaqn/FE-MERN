@@ -27,13 +27,7 @@ const usePagination = (totalCountProducts, currentPage, siblingCount = 1, limit 
         const siblingRight = Math.min(currentPage + siblingCount, paginationCount);
         if (isShowLeft && isShowRight) {
             const middleRange = generateRange(siblingLeft, siblingRight);
-            return [
-                1,
-                <BiDotsHorizontalRounded size={30} />,
-                ...middleRange,
-                <BiDotsHorizontalRounded size={30} />,
-                paginationCount
-            ];
+            return [1, <BiDotsHorizontalRounded size={30} />, ...middleRange, <BiDotsHorizontalRounded size={30} />, paginationCount];
         }
         //
     }, [totalCountProducts, currentPage, siblingCount]); // luu ket qua

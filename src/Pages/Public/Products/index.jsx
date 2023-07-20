@@ -22,7 +22,7 @@ const Products = () => {
         for (let i of params.entries()) param.push(i);
         let queries = {};
         for (let item of params) queries[item[0]] = item[1];
-        fetchData({ ...queries });
+        fetchData({ ...queries, limit: 8 });
         window.scrollTo(0, 0);
     }, [params]);
 
@@ -30,7 +30,7 @@ const Products = () => {
         <>
             <div className="bg-[#f7f7f7] pt-2 flex flex-col gap-3 pb-3  mx-[-14%]">
                 <Layout>
-                    <h1 className="font-bold text-xl">Products</h1>
+                    <h1 className="font-bold text-xl cursor-pointer">Products</h1>
                     <Breadcrumbs category="Products" />
                 </Layout>
             </div>
