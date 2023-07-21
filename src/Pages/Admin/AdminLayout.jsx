@@ -12,18 +12,20 @@ const AdminLayout = () => {
     }, []);
 
     return (
-        <div className="flex h-screen">
-            <div className="w-[275px] flex flex-col gap-3 border-r-[2px]">
-                <small className="flex flex-col gap-3 justify-center items-center mt-3">
-                    <img src={logo} alt="logo" className="object-contain " />
-                    <h1 className="text-lg capitalize ">admin workspace</h1>
-                </small>
-                <div className="mx-5">
-                    <NavBar />
+        <div className="flex min-h-screen relative">
+            <div className="flex-2 h-full flex items-center justify-center">
+                <div className="fixed top-0 flex  flex-col gap-3">
+                    <small className="flex flex-col gap-3 justify-center items-center mt-3">
+                        <img src={logo} alt="logo" className="object-contain " />
+                        <h1 className="text-lg capitalize ">admin workspace</h1>
+                    </small>
+                    <div className="mx-5">
+                        <NavBar />
+                    </div>
                 </div>
             </div>
-            <div className="flex-8 border-l-[2px] bg-gray-100">
-                <div className="mx-5">
+            <div className="flex-9 bg-gray-100">
+                <div className="mx-5 ">
                     <Outlet />
                 </div>
             </div>

@@ -26,7 +26,13 @@ module.exports = {
                 6: '6 6 0%',
                 7: '7 7 0%',
                 8: '8 8 0%',
-                9: '9 9 0%'
+                9: '9 9 0%',
+                10: '10 10 0%',
+                11: '11 11 0%',
+                12: '12 12 0%',
+                13: '13 13 0%',
+                14: '14 14 0%',
+                15: '15 15 0%'
             },
             keyframes: {
                 'slide-top': {
@@ -71,8 +77,7 @@ module.exports = {
                 },
                 'tlit-in-fwd': {
                     '0%': {
-                        '-webkit-transform':
-                            'rotateY(20deg) rotateX(35deg) translate(300px, -300px) skew(-35deg, 10deg)',
+                        '-webkit-transform': 'rotateY(20deg) rotateX(35deg) translate(300px, -300px) skew(-35deg, 10deg)',
                         transform: 'rotateY(20deg) rotateX(35deg) translate(300px, -300px) skew(-35deg, 10deg)',
                         opacity: '0'
                     },

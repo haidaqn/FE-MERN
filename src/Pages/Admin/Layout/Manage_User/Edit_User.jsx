@@ -2,8 +2,8 @@ import React, { memo, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { apiGetUsers, apiUpdateByUserAdmin } from '../../../../AxiosClient/apiAdmin';
 import { useSelector } from 'react-redux';
-import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { Loading } from '../../../../Components';
 import { toast } from 'react-toastify';
@@ -53,7 +53,6 @@ const Edit_User = () => {
 
     const onSubmit = async (data) => {
         data.isBlocked = status;
-        console.log(data);
 
         const response = await apiUpdateByUserAdmin(uid, data, token);
         if (response?.success) {
@@ -73,22 +72,42 @@ const Edit_User = () => {
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="my-4">
                         <label className="block text-gray-600 text-lg capitalize">Email</label>
-                        <input type="text" {...register('email')} defaultValue={payload?.email || ''} className="w-full border border-gray-300 rounded py-2 px-3" />
+                        <input
+                            type="text"
+                            {...register('email')}
+                            defaultValue={payload?.email || ''}
+                            className="w-full border border-gray-300 rounded py-2 px-3"
+                        />
                         {errors.email && <span className="text-red-500">{errors.email.message}</span>}
                     </div>
                     <div className="my-4">
                         <label className="block text-gray-600 text-lg capitalize">First Name</label>
-                        <input type="text" {...register('firstName')} defaultValue={payload?.firstName || ''} className="w-full border border-gray-300 rounded py-2 px-3" />
+                        <input
+                            type="text"
+                            {...register('firstName')}
+                            defaultValue={payload?.firstName || ''}
+                            className="w-full border border-gray-300 rounded py-2 px-3"
+                        />
                         {errors.firstName && <span className="text-red-500">{errors.firstName.message}</span>}
                     </div>
                     <div className="my-4">
                         <label className="block text-gray-600 text-lg capitalize">Last Name</label>
-                        <input type="text" {...register('lastName')} defaultValue={payload?.lastName || ''} className="w-full border border-gray-300 rounded py-2 px-3" />
+                        <input
+                            type="text"
+                            {...register('lastName')}
+                            defaultValue={payload?.lastName || ''}
+                            className="w-full border border-gray-300 rounded py-2 px-3"
+                        />
                         {errors.lastName && <span className="text-red-500">{errors.lastName.message}</span>}
                     </div>
                     <div className="my-4">
                         <label className="block text-gray-600 text-lg capitalize">Status</label>
-                        <select onChange={(e) => handleChangeOption(+e.target.value)} className="w-full border border-gray-300 rounded py-2 px-3 uppercase" name="status" id="status">
+                        <select
+                            onChange={(e) => handleChangeOption(+e.target.value)}
+                            className="w-full border border-gray-300 rounded py-2 px-3 uppercase"
+                            name="status"
+                            id="status"
+                        >
                             <option value="value">default option</option>
                             <option value="1">Block</option>
                             <option value="0">Active</option>
@@ -96,7 +115,12 @@ const Edit_User = () => {
                     </div>
                     <div className="my-4">
                         <label className="block text-gray-600 text-lg capitalize">Mobile</label>
-                        <input type="text" {...register('mobile')} defaultValue={payload?.mobile || ''} className="w-full border border-gray-300 rounded py-2 px-3" />
+                        <input
+                            type="text"
+                            {...register('mobile')}
+                            defaultValue={payload?.mobile || ''}
+                            className="w-full border border-gray-300 rounded py-2 px-3"
+                        />
                         {errors.mobile && <span className="text-red-500">{errors.mobile.message}</span>}
                     </div>
                     <button type="submit" className="bg-blue-500 hover:bg-blue-700 w-[50%] text-white font-bold py-2 px-4 rounded">
