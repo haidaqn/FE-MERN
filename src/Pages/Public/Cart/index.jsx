@@ -60,10 +60,18 @@ const Cart = () => {
                     {cart?.length ? (
                         <div className="flex flex-col gap-3 mt-6">
                             {cart?.map((item) => (
-                                <ItemCart key={item?._id} product={item.product} quantity={item.quantity} handleDeleteCart={handleDeleteCart} />
+                                <ItemCart
+                                    key={item?._id}
+                                    product={item.product}
+                                    quantity={item.quantity}
+                                    handleDeleteCart={handleDeleteCart}
+                                />
                             ))}
                             <div className="my-5 flex justify-center">
-                                <div className="border p-3 rounded-lg bg-main/95 text-white text-xl hover:opacity-80 cursor-pointer" onClick={() => handleCreateOrder()}>
+                                <div
+                                    className="border p-3 rounded-lg bg-main/95 text-white text-xl hover:opacity-80 cursor-pointer"
+                                    onClick={() => handleCreateOrder()}
+                                >
                                     <span className="">Tạo Đơn Hàng</span>
                                 </div>
                             </div>

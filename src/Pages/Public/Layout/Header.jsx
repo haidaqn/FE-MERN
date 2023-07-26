@@ -3,7 +3,7 @@ import { Layout } from '../../../Components';
 import icons from '../../../Utils/icons';
 import Content from './Content';
 import Navbar from './Navbar';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../../Store/User/userSlice';
@@ -27,11 +27,7 @@ const Header = () => {
                         <span>ORDER ONLINE OR CALL US (+1800) 000 8808</span>
                         <div className="flex justify-center items-center">
                             {isLogin ? (
-                                <div
-                                    className="relative"
-                                    onMouseEnter={(e) => setHover(true)}
-                                    onMouseLeave={(e) => setHover(false)}
-                                >
+                                <div className="relative" onMouseEnter={(e) => setHover(true)} onMouseLeave={(e) => setHover(false)}>
                                     <span className="pr-[10px] cursor-pointer transition-colors duration-300 hover:text-black">
                                         Welcome, {current?.firstName} {current?.lastName}
                                     </span>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { AiOutlineSearch } from 'react-icons/ai';
 
 const InputField = ({ type, setValue, nameKey, value, invalidFields, setInvalidFields, w, placeholder }) => {
     return (

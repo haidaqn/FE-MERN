@@ -88,20 +88,19 @@ const SearchItem = ({ name, js, activeClick, handleChangeFilter, type, elementSe
                             <small onClick={(e) => e.stopPropagation()} className="flex flex-col mt-2">
                                 {elementSelect?.map((color) => (
                                     <div
-                                        key={color.id}
+                                        key={color.code}
                                         className="flex  items-center gap-4 text-base cursor-pointer"
                                         onClick={() => handleSelect(color.name)}
                                     >
                                         <input
-                                            key={color.id}
                                             readOnly
                                             type={type}
-                                            name={color.name}
-                                            id={color.name}
-                                            checked={selected.some((element) => element === color.name)}
+                                            name={color.value}
+                                            id={color.value}
+                                            checked={selected.some((element) => element === color.value)}
                                             className="w-4 h-4 rounded focus:ring-blue-500 border-gray-300"
                                         />
-                                        <label className="capitalize">{color?.name}</label>
+                                        <label className="capitalize">{color?.value}</label>
                                     </div>
                                 ))}
                             </small>
@@ -109,9 +108,7 @@ const SearchItem = ({ name, js, activeClick, handleChangeFilter, type, elementSe
                     ) : type === 'input' ? (
                         <div className="whitespace-nowrap">
                             <small className="flex gap-20 text-base">
-                                <h2 className="whitespace-nowrap">{`The highest price is ${handlePrice(
-                                    bestPrice
-                                )} VND`}</h2>
+                                <h2 className="whitespace-nowrap">{`The highest price is ${handlePrice(bestPrice)} VND`}</h2>
                                 <span
                                     className="underline hover:text-main"
                                     onClick={(e) => {

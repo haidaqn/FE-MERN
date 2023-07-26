@@ -34,7 +34,7 @@ const ProductItem = ({ product, uhv }) => {
                     <Link to={`/${product.category?.toLowerCase()}/${product._id}/${product.title}`}>
                         <HoverIcon icon={<AiOutlineMenu size={20} link={link} />} />
                     </Link>
-                    <Link to={`/${product.category?.toLowerCase()}/${product._id}/${product.title}`}>
+                    <Link to={`/${product.category?.toLowerCase()}/${product._id}/${product.titles}`}>
                         <HoverIcon icon={<BsFillEyeFill size={20} link={link} />} />
                     </Link>
                 </div>

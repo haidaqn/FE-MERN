@@ -13,7 +13,7 @@ module.exports = {
             animation: {
                 'slide-top': 'slide-top 0.5s cubic-bezier(0.250,0.460,0.450, 0.940) both',
                 'slide-top-sm': 'slide-top-sm .25s linear both',
-                'scale-up': 'scale-up 1s linear both',
+                'scale-up': 'scale-up 0.15s linear both',
                 'slide-bottom': 'slide-bottom 0.5s cubic-bezier(0.250,0.460,0.450, 0.940) both',
                 'tlit-in-fwd': 'tlit-in-fwd 0.5s cubic-bezier(0.250,0.460,0.450, 0.940) both'
             },

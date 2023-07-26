@@ -5,8 +5,7 @@ import logo from '../../../assets/logo.png';
 import { options } from '../../../Utils/Contants';
 import { AiFillStar } from 'react-icons/ai';
 import { apiRatings } from '../../../AxiosClient/apiProducts';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { showModal } from '../../../Store/App/appSlice';
 import { toast } from 'react-toastify';
 
@@ -86,7 +85,9 @@ const VoteOption = ({ nameProduct, pid, rerender }) => {
                         </div>
                     ))}
                 </div>
-                {formik.touched.selectedOption && formik.errors.selectedOption && <span className="text-red-500">{formik.errors.selectedOption}</span>}
+                {formik.touched.selectedOption && formik.errors.selectedOption && (
+                    <span className="text-red-500">{formik.errors.selectedOption}</span>
+                )}
             </form>
             <button className="bg-blue-500 text-white px-[40px] py-2 rounded-lg mt-5 w-2/3" onClick={() => handleSubmit()}>
                 Submit

@@ -60,17 +60,15 @@ export const apiDeleteCategory = (pcid, token) =>
 
 // products
 
-export const apiCreateProduct = () => {};
 export const apiUpLoadImagesProduct = () => {}; // up nhieu img
 export const apiUpdateProduct = () => {};
 export const apiDeleteProduct = () => {};
 
 // order
+// export const apiUpdateStatus = () => {};
+// export const apiGetOrderByAdmin = () => {};
 
-export const apiUpdateStatus = () => {};
-export const apiGetOrderByAdmin = () => {};
-
-// coupon
-export const apiCreateCoupon = () => {};
-export const apiUpdateCoupon = () => {};
-export const apiDeleteCoupon = () => {};
+// // coupon
+// export const apiCreateCoupon = () => {};
+// export const apiUpdateCoupon = () => {};
+// export const apiDeleteCoupon = () => {};

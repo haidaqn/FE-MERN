@@ -7,6 +7,16 @@ export const apiProducts = (params) =>
         params
     });
 
+export const apiCreateProduct = (data, token) =>
+    axios({
+        url: '/product/',
+        method: 'post',
+        data,
+        headers: {
+            'access-token': token
+        }
+    });
+
 export const apiProduct = (pid) =>
     axios({
         url: `/product/${pid}`,

@@ -1,8 +1,9 @@
 import React from 'react';
 import clsx from 'clsx';
 import { useSearchParams, useNavigate, createSearchParams, useLocation } from 'react-router-dom';
+import { ButtonCommon } from '../../Components';
 
-const PaginationItem = ({ children }) => {
+const PaginationItem = ({ children, index }) => {
     const [params] = useSearchParams();
     const navigate = useNavigate();
     const location = useLocation();
@@ -20,18 +21,16 @@ const PaginationItem = ({ children }) => {
     };
 
     return (
-        <button
-            className={clsx(
+        <ButtonCommon
+            style={clsx(
                 'w-10 h-10 text-xl flex justify-center',
                 !Number(children) ? 'items-end' : 'items-center hover:rounded-full hover:bg-gray-300',
-                +params.get('page') === +children && 'bg-gray-300 rounded-full'
+                +params.get('page') === +children && 'bg-gray-300 rounded-full',
+                index === 0 && 'bg-gray-300 rounded-full'
             )}
-            type="button"
-            disabled={!Number(children)}
-            onClick={() => handlePagination()}
-        >
-            {children}
-        </button>
+            handleClick={handlePagination}
+            name={children}
+        />
     );
 };
 

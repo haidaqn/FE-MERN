@@ -16,10 +16,18 @@ export const handlePrice = (price) => {
     }).format(price);
 };
 
+export const fileToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = (error) => reject(error);
+    });
+};
+
 export function roundDecimal(number) {
     var roundedNumber = Math.round(number);
     var decimalPart = roundedNumber % 1;
-
     if (decimalPart >= 0.5) {
         return Math.ceil(number);
     } else {

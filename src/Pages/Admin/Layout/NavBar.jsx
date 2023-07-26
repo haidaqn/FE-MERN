@@ -1,7 +1,12 @@
 import React, { Fragment, useState } from 'react';
 import { adminSlideBar } from '../../../Utils/Contants';
-import { NavLink } from 'react-router-dom';
-import { AiOutlineCaretDown } from 'react-icons/ai';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { AiOutlineCaretDown, AiOutlineLogout } from 'react-icons/ai';
+import Swal from 'sweetalert2';
+import path from '../../../Utils/path';
+import { apiLogout } from '../../../AxiosClient/apiUser';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../../Store/User/userSlice';
 
 //
 
@@ -10,7 +15,22 @@ const notActive = 'hover:bg-gray-300';
 
 const NavBar = () => {
     const [actived, setActived] = useState([]);
-
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const handleLogout = () => {
+        Swal.fire({
+            text: 'Log Out',
+            cancelButtonText: 'NO',
+            confirmButtonText: 'Yes',
+            showCancelButton: true
+        }).then(async (response) => {
+            if (response.isConfirmed) {
+                await apiLogout();
+                dispatch(logout({ isLogin: false, token: null, userData: null }));
+                navigate(`/${path.HOME}`);
+            }
+        });
+    };
     const handleActived = (id) => {
         if (actived.some((item) => item === +id)) setActived((prev) => prev.filter((element) => element !== +id));
         else setActived((prev) => [...prev, +id]);
@@ -62,6 +82,10 @@ const NavBar = () => {
                     )}
                 </Fragment>
             ))}
+            <div className="flex items-center gap-5 border p-3 rounded-lg" onClick={() => handleLogout()}>
+                <AiOutlineLogout size={30} />
+                <h1>Log out</h1>
+            </div>
         </div>
     );
 };

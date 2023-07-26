@@ -15,6 +15,7 @@ const Category = () => {
     const [activeClick, setActiveClick] = useState(null);
     const [sort, setSort] = useState(null);
     const [params] = useSearchParams();
+
     const fetchDataCategory = async (queries) => {
         setIsLoading(true);
         const response = await apiProducts(queries);
@@ -81,7 +82,13 @@ const Category = () => {
                     <span className="text-lg text-gray-500">Filter by</span>
                     <small className="flex-5 flex gap-4">
                         <SearchItem name="Price" activeClick={activeClick} handleChangeFilter={handleChangeFilter} type="input" />
-                        <SearchItem name="Color" type="checkbox" elementSelect={colors} activeClick={activeClick} handleChangeFilter={handleChangeFilter} />
+                        <SearchItem
+                            name="Color"
+                            type="checkbox"
+                            elementSelect={colors}
+                            activeClick={activeClick}
+                            handleChangeFilter={handleChangeFilter}
+                        />
                     </small>
                 </div>
                 <div className="flex-2 flex  flex-col gap-2">

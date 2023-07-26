@@ -114,16 +114,16 @@ export const product_information = [
 ];
 
 export const colors = [
-    { id: 1, name: 'black' },
-    { id: 2, name: 'brown' },
-    { id: 3, name: 'gray' },
-    { id: 4, name: 'white' },
-    { id: 5, name: 'pink' },
-    { id: 6, name: 'yellow' },
-    { id: 7, name: 'orange' },
-    { id: 8, name: 'purple' },
-    { id: 9, name: 'green' },
-    { id: 10, name: 'blue' }
+    { code: 1, value: 'black' },
+    { code: 2, value: 'brown' },
+    { code: 3, value: 'gray' },
+    { code: 4, value: 'white' },
+    { code: 5, value: 'pink' },
+    { code: 6, value: 'yellow' },
+    { code: 7, value: 'orange' },
+    { code: 8, value: 'purple' },
+    { code: 9, value: 'green' },
+    { code: 10, value: 'blue' }
 ];
 
 export const sortBy = [

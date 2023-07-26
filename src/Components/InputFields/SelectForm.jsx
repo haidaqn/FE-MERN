@@ -1,6 +1,6 @@
-import React, { memo } from 'react';
+import React from 'react';
 
-const InputForm = ({ label, disabled, placeholder, min, register, errors, id, validate, type = 'text', defaultValue }) => {
+const SelectForm = ({ label, options = [], id, register, validate, errors }) => {
     return (
         <div className="flex-1">
             {label && (
@@ -8,19 +8,21 @@ const InputForm = ({ label, disabled, placeholder, min, register, errors, id, va
                     {label}
                 </label>
             )}
-            <input
-                type={type}
+            <select
                 id={id}
                 {...register(id, validate)}
-                disabled={disabled}
-                placeholder={placeholder}
-                min={min}
                 className="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring focus:border-blue-500"
-                defaultValue={defaultValue}
-            />
+            >
+                <option value="">Select a {label}</option>
+                {options?.map((option) => (
+                    <option className="capitalize" key={option?.code}>
+                        {option?.value}
+                    </option>
+                ))}
+            </select>
             {errors[id] && <p className=" text-main">{errors[id]?.message}</p>}
         </div>
     );
 };
 
-export default memo(InputForm);
+export default SelectForm;
